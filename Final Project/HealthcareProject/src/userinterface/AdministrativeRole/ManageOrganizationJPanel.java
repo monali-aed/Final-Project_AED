@@ -69,6 +69,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 240, 240));
+
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -96,9 +98,12 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(organizationJTable);
-        organizationJTable.getColumnModel().getColumn(0).setResizable(false);
-        organizationJTable.getColumnModel().getColumn(1).setResizable(false);
+        if (organizationJTable.getColumnModel().getColumnCount() > 0) {
+            organizationJTable.getColumnModel().getColumn(0).setResizable(false);
+            organizationJTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
+        addJButton.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         addJButton.setText("Add Organization");
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,8 +113,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel1.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         jLabel1.setText("Organization Type ");
 
+        backJButton.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,37 +128,39 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(178, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(334, 334, 334))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addJButton)
-                .addGap(175, 175, 175))
+                .addGap(30, 30, 30)
+                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(284, 284, 284))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(addJButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addJButton)
-                    .addComponent(backJButton))
-                .addGap(48, 48, 48))
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
         );
     }// </editor-fold>//GEN-END:initComponents
 

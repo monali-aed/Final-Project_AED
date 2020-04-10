@@ -60,6 +60,8 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         nameJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 240, 240));
+
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -91,8 +93,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             networkJTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        jLabel1.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         jLabel1.setText("Name");
 
+        submitJButton.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +104,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
-        backJButton.setText("<< Back");
+        nameJTextField.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
+
+        backJButton.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
+        backJButton.setText("Previous");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -112,33 +119,39 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(submitJButton)
+                .addGap(104, 104, 104)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 138, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(backJButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backJButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(38, 38, 38)
+                        .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(244, 244, 244))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(submitJButton)
+                        .addGap(273, 273, 273))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                .addGap(42, 42, 42)
+                .addComponent(backJButton)
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(submitJButton)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(backJButton)
-                .addGap(76, 76, 76))
+                .addGap(41, 41, 41)
+                .addComponent(submitJButton)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
