@@ -31,7 +31,7 @@ public abstract class Organization {
         Admin("Admin Organization"),
         Doctor("Doctor Organization"),
         Lab("Lab Organization"),
-        Supplier("MedicineSupplier Organization"),
+        Supplier("MedicineVaccineSupplier Organization"),
         Nurse("Nurse Organization"),
         Receptionist("Receptionist Organization"),
         Pharmacist("Pharmacist Organiation"),
