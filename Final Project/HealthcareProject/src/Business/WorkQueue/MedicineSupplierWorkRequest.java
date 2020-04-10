@@ -9,14 +9,15 @@ package Business.WorkQueue;
  *
  * @author monal
  */
-public class BloodRequest {
-    private String approval;
+public class MedicineSupplierWorkRequest {
+    
+    private String comments;
 
-    public String getApproval() {
-        return approval;
+    public String getComments() {
+        return comments;
     }
 
-    public void setApproval(String approval) {
-        this.approval = approval;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

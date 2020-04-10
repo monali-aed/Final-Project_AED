@@ -5,10 +5,35 @@
  */
 package Business.WorkQueue;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author monal
  */
 public class ScheduleDirectory {
+    
+      private ArrayList<Schedule> scheduleList;
+    
+    public ScheduleDirectory()
+    {
+        scheduleList = new ArrayList<Schedule>();
+    }
+
+    public ArrayList<Schedule> getScheduleList() {
+        return scheduleList;
+    }
+    
+    public Schedule add()
+    {
+        Schedule s = new Schedule();
+        scheduleList.add(s);
+        return s;
+    }
+    
+    public void cancelSchedule(Schedule schedule)
+    {
+        scheduleList.remove(schedule);
+    }
     
 }
