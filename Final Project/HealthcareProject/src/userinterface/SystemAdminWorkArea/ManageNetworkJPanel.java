@@ -27,17 +27,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
      */
     public ManageNetworkJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
-
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-
         populateNetworkTable();
     }
 
     private void populateNetworkTable() {
         DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
-
-        model.setRowCount(0);
+         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
             Object[] row = new Object[1];
             row[0] = network.getName();
