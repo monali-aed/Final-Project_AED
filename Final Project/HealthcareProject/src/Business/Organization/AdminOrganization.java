@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public class AdminOrganization extends Organization{
 
@@ -24,5 +24,9 @@ public class AdminOrganization extends Organization{
         roles.add(new AdminRole());
         return roles;
     }
-     
+
+    public String getType() {
+    return "Admin Organization";
+        }
+    
 }

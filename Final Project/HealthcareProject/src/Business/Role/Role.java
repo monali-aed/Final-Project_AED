@@ -6,20 +6,26 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public abstract class Role {
     
     public enum RoleType{
-        Admin("Admin"),
-        Doctor("Doctor"),
-        LabAssistant("Lab Assistant");
+        ADMIN("Admin"),
+        DOCTOR("Doctor"),
+        LABASSISTANT("Lab Assistant"),
+        NURSE("Nurse"),
+        RECEPTIONIST("Receptionist"),
+        PHARMACIST("Pharmacist"),
+        SUPPLIER("Medicine Supplier"),
+        BLOOD_SUPPLIER("Blood Supplier");
         
         private String value;
         private RoleType(String value){
@@ -40,7 +46,8 @@ public abstract class Role {
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
-            EcoSystem business);
+            EcoSystem business,
+             Network network);
 
     @Override
     public String toString() {

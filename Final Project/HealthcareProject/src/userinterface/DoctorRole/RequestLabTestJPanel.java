@@ -53,39 +53,34 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(240, 240, 240));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        requestTestJButton.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
-        requestTestJButton.setText("Request lab Test");
+        requestTestJButton.setText("Request Test");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
             }
         });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 160, 60));
+        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         jLabel1.setText("Message");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 100, 30));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 140, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 40, -1, -1));
+        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 37, 89, -1));
 
-        backJButton.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
-        backJButton.setText("Previous");
+        backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, 50));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 138, -1, -1));
 
-        valueLabel.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 160, 40));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
 
-        enterpriseLabel.setFont(new java.awt.Font("Noteworthy", 1, 18)); // NOI18N
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 120, 30));
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed

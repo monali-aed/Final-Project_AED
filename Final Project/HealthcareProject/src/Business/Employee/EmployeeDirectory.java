@@ -22,10 +22,12 @@ public class EmployeeDirectory {
         return employeeList;
     }
     
-    public Employee createEmployee(String name){
+    public Employee createEmployee(String name,int i){
         Employee employee = new Employee();
         employee.setName(name);
         employeeList.add(employee);
         return employee;
     }
+
+   
 }

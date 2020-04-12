@@ -5,8 +5,10 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
+import Business.Patient.PatientDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.ScheduleDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -20,11 +22,20 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private PatientDirectory patientDirectory;
+    private ScheduleDirectory scheduleDirectory;
     private int organizationID;
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization");
+        Admin("Admin Organization"),
+        Doctor("Doctor Organization"),
+        Lab("Lab Organization"),
+        Supplier("MedicineVaccineSupplier Organization"),
+        Nurse("Nurse Organization"),
+        Receptionist("Receptionist Organization"),
+        Pharmacist("Pharmacist Organiation"),
+        BloodSupplier("BloodBank Organization");
         private String value;
         private Type(String value) {
             this.value = value;
@@ -39,12 +50,17 @@ public abstract class Organization {
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        patientDirectory = new PatientDirectory();
+        scheduleDirectory = new ScheduleDirectory();
         organizationID = counter;
         ++counter;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
-    
+     public String getType()
+    {
+        return null;
+    }
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }

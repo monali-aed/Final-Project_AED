@@ -23,7 +23,8 @@ public abstract class Enterprise extends Organization{
     
     public enum EnterpriseType{
         Hospital("Hospital"),
-         BLOOD_BANK("BloodBank");
+        BLOOD_BANK("BloodBank"),
+        SUPPLIER("Medicine Supplier");
         
         private String value;
         
