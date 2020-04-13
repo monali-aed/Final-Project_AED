@@ -201,8 +201,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="org.netbeans.modules.form.InvalidComponent" name="dateField">
-        </Component>
         <Component class="javax.swing.JButton" name="btnCreateSchedule">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -224,6 +222,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="dateField">
         </Component>
       </SubComponents>
     </Container>

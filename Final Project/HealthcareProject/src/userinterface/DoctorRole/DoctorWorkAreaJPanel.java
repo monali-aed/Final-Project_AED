@@ -37,7 +37,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
-    
+/*    
     public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         

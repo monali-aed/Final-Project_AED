@@ -12,8 +12,10 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -46,84 +48,130 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        requestTestJButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        messageJTextField = new javax.swing.JTextField();
-        backJButton = new javax.swing.JButton();
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
+        patientNameLabel = new javax.swing.JLabel();
+        txtPatientName = new javax.swing.JTextField();
+        testsLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        areaTests = new javax.swing.JTextArea();
+        btnRequest = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 240, 240));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        requestTestJButton.setText("Request Test");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
-            }
-        });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, -1, -1));
-
-        jLabel1.setText("Message");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 40, -1, -1));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 37, 89, -1));
-
-        backJButton.setText("<<Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 138, -1, -1));
-
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 130, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 120, 30));
+
+        patientNameLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        patientNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        patientNameLabel.setText("Patient Name:");
+        add(patientNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        txtPatientName.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtPatientName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPatientNameKeyTyped(evt);
+            }
+        });
+        add(txtPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 220, -1));
+
+        testsLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        testsLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        testsLabel.setText("Tests:");
+        add(testsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+
+        areaTests.setColumns(20);
+        areaTests.setRows(5);
+        jScrollPane1.setViewportView(areaTests);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+
+        btnRequest.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnRequest.setText("Request");
+        btnRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestActionPerformed(evt);
+            }
+        });
+        add(btnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, -1, -1));
+
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        
-        String message = messageJTextField.getText();
-        
-        LabTestWorkRequest request = new LabTestWorkRequest();
-        request.setMessage(message);
-        request.setSender(userAccount);
-        request.setStatus("Sent");
-        
-        Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof LabOrganization){
-                org = organization;
-                break;
-            }
-        }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-        }
-        
-    }//GEN-LAST:event_requestTestJButtonActionPerformed
+    private void txtPatientNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPatientNameKeyTyped
+        char ch = evt.getKeyChar();
+        if(!(Character.isAlphabetic(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+        {
+            evt.consume();
+            if(Character.isDigit(ch) || Character.isSpaceChar(ch))
+            JOptionPane.showMessageDialog(null,"Enter alphabetical values only.");
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_txtPatientNameKeyTyped
+/*
+    private void btnRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestActionPerformed
+        // TODO add your handling code here:
+        if(txtPatientName.getText().isEmpty() || areaTests.getText().trim().isEmpty())
+            JOptionPane.showMessageDialog(null, "Please enter all the values", "WARNING", JOptionPane.WARNING_MESSAGE);
+        else if(txtPatientName.getText().matches("[^([A-Za-z])+$]"))
+            JOptionPane.showMessageDialog(null, "Please enter name correctly", "WARNING", JOptionPane.WARNING_MESSAGE);
+        else if(areaTests.getText().trim().matches("^[A-Z0-9 _]*$"))
+            JOptionPane.showMessageDialog(null, "Please enter name correctly", "WARNING", JOptionPane.WARNING_MESSAGE);
+        else{
 
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        
+            LabTestWorkRequest request = new LabTestWorkRequest();
+            request.setPatientName(txtPatientName.getText());
+            request.setMessage(areaTests.getText());
+            request.setSender(userAccount);
+            request.setStatus("Sent");
+            request.setRequestType("Lab Test Request");
+
+            Organization org = null;
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof LabOrganization){
+                    org = organization;
+                    break;
+                }
+            }
+            if (org!=null){
+                org.getWorkQueue().getWorkRequestList().add(request);
+                userAccount.getWorkQueue().getWorkRequestList().add(request);
+            }
+
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        }
+    }//GEN-LAST:event_btnRequestActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
         userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-        
-    }//GEN-LAST:event_backJButtonActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backJButton;
+    private javax.swing.JTextArea areaTests;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRequest;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField messageJTextField;
-    private javax.swing.JButton requestTestJButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel patientNameLabel;
+    private javax.swing.JLabel testsLabel;
+    private javax.swing.JTextField txtPatientName;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

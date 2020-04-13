@@ -6,11 +6,12 @@ package Business.UserAccount;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
+import Business.WorkQueue.ScheduleDirectory;
 import Business.WorkQueue.WorkQueue;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public class UserAccount {
     
@@ -19,9 +20,18 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+      private ScheduleDirectory scheduleDirectory;
 
     public UserAccount() {
         workQueue = new WorkQueue();
+    }
+
+    public ScheduleDirectory getScheduleDirectory() {
+        return scheduleDirectory;
+    }
+
+    public void setScheduleDirectory(ScheduleDirectory scheduleDirectory) {
+        this.scheduleDirectory = scheduleDirectory;
     }
     
     

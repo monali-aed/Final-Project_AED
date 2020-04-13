@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package userinterface.DoctorRole;
-import business.UserAccount.UserAccount;
-import business.WorkQueue.Schedule;
-import business.WorkQueue.ScheduleDirectory;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Schedule;
+import Business.WorkQueue.ScheduleDirectory;
 import java.awt.CardLayout;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,9 +57,9 @@ public class DoctorCreateSchedule extends javax.swing.JFrame {
         txtTime = new javax.swing.JComboBox();
         txtHours = new javax.swing.JTextField();
         txtLocation = new javax.swing.JTextField();
-        dateField = new org.netbeans.modules.form.InvalidComponent();
         btnCreateSchedule = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        dateField = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,7 +240,7 @@ public class DoctorCreateSchedule extends javax.swing.JFrame {
     private javax.swing.JLabel banner;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateSchedule;
-    private org.netbeans.modules.form.InvalidComponent dateField;
+    private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel hoursLabel;
     private javax.swing.JPanel jPanel;

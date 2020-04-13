@@ -5,15 +5,15 @@
  */
 package userinterface.DoctorRole;
 
-import business.Enterprise.Enterprise;
-import business.Network.Network;
-import business.Organization.DoctorOrganization;
-import business.UserAccount.UserAccount;
-import business.WorkQueue.LabTestWorkRequest;
-import business.WorkQueue.MedicineWorkRequest;
-import business.WorkQueue.Schedule;
-import business.WorkQueue.ScheduleDirectory;
-import business.WorkQueue.WorkRequest;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.DoctorOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.MedicineWorkRequest;
+import Business.WorkQueue.Schedule;
+import Business.WorkQueue.ScheduleDirectory;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -344,10 +344,10 @@ public class DoctorContainer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateScheduleActionPerformed
-        DoctorCreateSchedule doctorCreateSchedule =new DoctorCreateSchedule(DoctorContainerRightJPanel, userAccount, scheduleDirectory);
-        DoctorContainerRightJPanel.add("DoctorCreateSchedule", doctorCreateSchedule);
-        CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
-        layout.next(DoctorContainerRightJPanel);
+        DoctorCreateSchedule doctorCreateSchedule =new DoctorCreateSchedule(DoctorContainerLeftPanel, userAccount, scheduleDirectory);
+        DoctorContainerLeftPanel.add("DoctorCreateSchedule", doctorCreateSchedule);
+        CardLayout layout=(CardLayout) DoctorContainerLeftPanel.getLayout();
+        layout.next(DoctorContainerLeftPanel);
         btnCreateSchedule.setEnabled(false);
         btnModifySchedule.setEnabled(false);
         btnRequestMedicine.setEnabled(false);
@@ -366,10 +366,10 @@ public class DoctorContainer extends javax.swing.JPanel {
         else
         {
             Schedule schedule = (Schedule) tblDoctorSchedule.getValueAt(selectedRow, 3);
-            DoctorModifySchedule doctorModifySchedule = new DoctorModifySchedule(DoctorContainerRightJPanel, userAccount, schedule);
-            DoctorContainerRightJPanel.add("modifyDoctorSchedule", doctorModifySchedule);
-            CardLayout layout = (CardLayout) DoctorContainerRightJPanel.getLayout();
-            layout.next(DoctorContainerRightJPanel);
+            DoctorModifySchedule doctorModifySchedule = new DoctorModifySchedule (container, userAccount, schedule);
+            DoctorContainerLeftPanel.add("modifyDoctorSchedule", doctorModifySchedule);
+            CardLayout layout = (CardLayout) DoctorContainerLeftPanel.getLayout();
+            layout.next(DoctorContainerLeftPanel);
             btnCreateSchedule.setEnabled(false);
             btnRequestLabTest.setEnabled(false);
             btnRequestMedicine.setEnabled(false);
@@ -395,10 +395,10 @@ public class DoctorContainer extends javax.swing.JPanel {
 
     private void btnRequestLabTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestLabTestActionPerformed
         // TODO add your handling code here:
-        DoctorLabTestRequest docterLabTestRequest =new DoctorLabTestRequest(DoctorContainerRightJPanel, userAccount, enterprise);
-        DoctorContainerRightJPanel.add("Lab Test Request", docterLabTestRequest);
-        CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
-        layout.next(DoctorContainerRightJPanel);
+        RequestLabTestJPanel docterLabTestRequest =new RequestLabTestJPanel(DoctorContainerLeftPanel, userAccount, enterprise);
+        DoctorContainerLeftPanel.add("Lab Test Request", docterLabTestRequest);
+        CardLayout layout=(CardLayout) DoctorContainerLeftPanel.getLayout();
+        layout.next(DoctorContainerLeftPanel);
         btnCreateSchedule.setEnabled(false);
         btnModifySchedule.setEnabled(false);
         btnRequestMedicine.setEnabled(false);
@@ -409,16 +409,7 @@ public class DoctorContainer extends javax.swing.JPanel {
 
     private void btnRequestMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestMedicineActionPerformed
         // TODO add your handling code here:
-        DoctorMedicineRequest doctorMedicineRequest =new DoctorMedicineRequest(DoctorContainerRightJPanel, userAccount, enterprise);
-        DoctorContainerRightJPanel.add("Lab Test Request", doctorMedicineRequest);
-        CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
-        layout.next(DoctorContainerRightJPanel);
-        btnCreateSchedule.setEnabled(false);
-        btnModifySchedule.setEnabled(false);
-        btnRequestMedicine.setEnabled(false);
-        btnRequestLabTest.setEnabled(false);
-        btnCancel.setEnabled(false);
-        btnViewReports.setEnabled(false);
+       
 
     }//GEN-LAST:event_btnRequestMedicineActionPerformed
 
@@ -431,10 +422,10 @@ public class DoctorContainer extends javax.swing.JPanel {
         else
         {
             LabTestWorkRequest request = (LabTestWorkRequest) tblLabRequests.getValueAt(selectedRow, 1);
-            DoctorViewReoprts doctorViewReports =new DoctorViewReoprts(DoctorContainerRightJPanel, userAccount, request);
-            DoctorContainerRightJPanel.add("doctorViewReports", doctorViewReports);
-            CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
-            layout.next(DoctorContainerRightJPanel);
+            DoctorViewReports doctorViewReports =new DoctorViewReports(DoctorContainerLeftPanel, userAccount, request);
+            DoctorContainerLeftPanel.add("doctorViewReports", doctorViewReports);
+            CardLayout layout=(CardLayout) DoctorContainerLeftPanel.getLayout();
+            layout.next(DoctorContainerLeftPanel);
             btnCreateSchedule.setEnabled(false);
             btnModifySchedule.setEnabled(false);
             btnRequestMedicine.setEnabled(false);
