@@ -38,7 +38,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         popOrganizationComboBox();
         popData();
     }
-/*
+
     public void popOrganizationComboBox() {
         boxOrganization.removeAllItems();
 
