@@ -58,7 +58,6 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         btnRequest = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(240, 240, 240));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         valueLabel.setText("<value>");
@@ -99,7 +98,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 btnRequestActionPerformed(evt);
             }
         });
-        add(btnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, -1, -1));
+        add(btnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, -1, -1));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBack.setText("<< Back");
@@ -120,7 +119,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Enter alphabetical values only.");
         }    // TODO add your handling code here:
     }//GEN-LAST:event_txtPatientNameKeyTyped
-/*
+
     private void btnRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestActionPerformed
         // TODO add your handling code here:
         if(txtPatientName.getText().isEmpty() || areaTests.getText().trim().isEmpty())
