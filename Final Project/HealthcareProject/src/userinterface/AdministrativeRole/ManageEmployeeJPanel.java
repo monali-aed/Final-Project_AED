@@ -32,7 +32,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
     }
-    
+  /*  
     public void populateOrganizationComboBox(){
         boxOrganization.removeAllItems();
         
