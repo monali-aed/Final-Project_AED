@@ -15,13 +15,14 @@ import java.util.ArrayList;
  * @author monal
  */
 public class BloodBankOrganization {
-     public BloodBankOrganization() {
-        
+    BloodBankOrganization() {
+        super();
     }
+
     
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-     //   roles.add(new BloodSupplierRole());
+        roles.add(new BloodSupplierRole());
         return roles;
     }
 

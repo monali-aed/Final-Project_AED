@@ -5,6 +5,15 @@
  */
 package userinterface.BloodSupplier;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.AdminOrganization;
+import Business.Organization.BloodBankOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author monal
@@ -14,8 +23,26 @@ public class BloodSupplierWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BloodSupplierWorkAreaJPanel
      */
-    public BloodSupplierWorkAreaJPanel() {
+     JPanel userProcessContainer;
+    Enterprise enterprise;
+    EcoSystem business;
+    Network network;
+    UserAccount userAccount;
+    BloodBankOrganization organization;
+    public BloodSupplierWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, BloodBankOrganization organization, Enterprise enterprise, EcoSystem business, Network network) {
         initComponents();
+       
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.business = business;
+        this.network = network;
+        this.userAccount = userAccount;
+        this.organization = (BloodBankOrganization)organization;
+        
+    }
+
+    public BloodSupplierWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, Network network) {
+        
     }
 
     /**

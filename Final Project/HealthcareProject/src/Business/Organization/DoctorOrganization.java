@@ -24,5 +24,9 @@ public class DoctorOrganization extends Organization{
         roles.add(new DoctorRole());
         return roles;
     }
+    
+    public String getType() {
+    return "Doctor Organization";
+    }
      
 }

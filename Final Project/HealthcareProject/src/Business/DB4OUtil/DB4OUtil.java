@@ -11,12 +11,12 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author rrheg
- * @author Lingfeng
+ * @author monal
+ * 
  */
 public class DB4OUtil {
 
-    private static final String FILENAME = "C:\\Users\\monal\\OneDrive\\Documents\\Final Project AED\\Final Project\\HealthcareProject\\Databank.db4o";
+    private static final String FILENAME = "C:\\Users\\monal\\OneDrive\\Documents\\AED PROJECT\\Final Project\\HealthcareProject\\Databank.db4o";
     private static DB4OUtil dB4OUtil;
     
     public synchronized static DB4OUtil getInstance(){
