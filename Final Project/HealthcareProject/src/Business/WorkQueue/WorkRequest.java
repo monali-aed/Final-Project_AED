@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public abstract class WorkRequest {
 
@@ -19,6 +19,8 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+     private String patientName;
+    private String requestType;
     
     public WorkRequest(){
         requestDate = new Date();
@@ -71,4 +73,22 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+    
+    
 }

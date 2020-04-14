@@ -31,7 +31,7 @@ public class Blood {
 
     @Override
     public String toString() {
-        return "Blood{" + "type=" + type + '}';
+        return type;
     }
     
 }

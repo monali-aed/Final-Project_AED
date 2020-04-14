@@ -27,7 +27,7 @@ public class MedicineVaccineSupplierOrganization extends Organization{
     }
     
      public String getType() {
-    return "Medicine Vaccine Supplier Organization";
+    return "MedicineVaccineSupplier Organization";
     }
     
 }

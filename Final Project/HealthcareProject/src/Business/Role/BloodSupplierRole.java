@@ -12,14 +12,17 @@ import Business.Organization.BloodBankOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import javax.swing.JPanel;
+import userinterface.BloodSupplier.BloodSupplierWorkAreaJPanel;
 
 /**
  *
  * @author monal
  */
 public class BloodSupplierRole extends Role{
-    public JPanel createWorkArea(JPanel container, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, Network network) 
-    {
-      return null;   }
+        
+     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network)
+     {
+         return new BloodSupplierWorkAreaJPanel(userProcessContainer, account,organization, enterprise, business, network);
+    }
 }
+

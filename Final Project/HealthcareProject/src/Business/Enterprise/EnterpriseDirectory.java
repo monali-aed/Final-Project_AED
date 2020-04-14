@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author MyPC1
+ * @author monal
  */
 public class EnterpriseDirectory {
     private ArrayList<Enterprise> enterpriseList;
@@ -29,12 +29,29 @@ public class EnterpriseDirectory {
     }
     
     //Create enterprise
-    public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
-        Enterprise enterprise=null;
-        if(type==Enterprise.EnterpriseType.Hospital){
-            enterprise=new HospitalEnterprise(name);
-            enterpriseList.add(enterprise);
+    public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type)
+    {
+        {
+       Enterprise enterprise = null;
+        if(null != type)
+        switch (type) {
+            case Hospital:
+                enterprise = new HospitalEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+       
+            case SUPPLIER:
+                enterprise = new SupplierEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            case BLOOD_BANK:
+                enterprise = new BloodBankEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            default: 
+                break;
         }
         return enterprise;
     }
+}
 }
