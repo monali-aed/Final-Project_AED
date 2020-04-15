@@ -43,14 +43,7 @@ public class OrganizationDirectory {
             organizationList.add(organization);
         }
         
-        else if (type.getValue().equals(Type.Pharmacist.getValue())){
-          //  organization = new PharmacistOrganization();
-            organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.BloodSupplier.getValue())){
-            //organization = new BloodBankOrganization();
-            organizationList.add(organization);
-        }
+       
         return organization;
     }
 }
