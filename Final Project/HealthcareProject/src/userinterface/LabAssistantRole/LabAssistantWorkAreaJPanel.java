@@ -140,7 +140,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Lab Test Requests:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1860, 960));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1840, 960));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed

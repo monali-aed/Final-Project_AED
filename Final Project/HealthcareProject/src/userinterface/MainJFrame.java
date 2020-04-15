@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Lingfeng
+ * @author monal
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -149,7 +149,7 @@ public class MainJFrame extends javax.swing.JFrame {
                            if(userAccount!=null){
                                inEnterprise=enterprise;
                                inOrganization=organization;
-                               
+                               inNetwork = network;
                                break;
                            }
                        }
@@ -157,6 +157,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                     else{
                        inEnterprise=enterprise;
+                       inNetwork = network;
                        break;
                     }
                     if(inOrganization!=null){
@@ -175,7 +176,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system,inNetwork));
+            container.add(userAccount.getRole().toString() + "workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system,inNetwork));
             layout.next(container);
         }
         
