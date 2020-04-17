@@ -26,7 +26,7 @@ public abstract class Organization {
     private ScheduleDirectory scheduleDirectory;
     private int organizationID;
     private static int counter=0;
-    
+     private String type;
     public enum Type{
         Admin("Admin Organization"),
         Doctor("Doctor Organization"),

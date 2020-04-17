@@ -58,6 +58,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         btnRequest = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 240, 240));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         valueLabel.setText("<value>");
@@ -98,7 +99,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 btnRequestActionPerformed(evt);
             }
         });
-        add(btnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, -1, -1));
+        add(btnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, -1, -1));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBack.setText("<< Back");

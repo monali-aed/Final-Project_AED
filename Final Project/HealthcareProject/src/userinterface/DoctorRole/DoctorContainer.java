@@ -5,6 +5,7 @@
  */
 package userinterface.DoctorRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
@@ -32,14 +33,16 @@ public class DoctorContainer extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private ScheduleDirectory scheduleDirectory;
+    private EcoSystem business;
     Network network;
-    public DoctorContainer(JPanel container, UserAccount userAccount, DoctorOrganization organization, Enterprise enterprise, Network network) {
+    public DoctorContainer(JPanel container, UserAccount userAccount, DoctorOrganization organization, Enterprise enterprise,EcoSystem business, Network network) {
         initComponents();
         this.container=container;
         this.userAccount = userAccount;
         this.organization=organization;
         this.enterprise=enterprise;
         this.network = network;
+        this.business=business;
         scheduleDirectory= userAccount.getScheduleDirectory();
         populateScheduleTable();
         populateLabRequestTable();

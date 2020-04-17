@@ -26,6 +26,9 @@ public class LabOrganization extends Organization{
     }
      
    
-    
+      @Override
+    public String getType() {
+    return "Lab Organization";
+    }
     
 }

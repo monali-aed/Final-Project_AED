@@ -10,7 +10,7 @@ import Business.Organization.OrganizationDirectory;
 
 /**
  *
- * @author MyPC1
+ * @author monal
  */
 public abstract class Enterprise extends Organization{
     

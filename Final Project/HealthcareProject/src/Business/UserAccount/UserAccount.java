@@ -24,6 +24,7 @@ public class UserAccount {
 
     public UserAccount() {
         workQueue = new WorkQueue();
+        scheduleDirectory = new ScheduleDirectory();
     }
 
     public ScheduleDirectory getScheduleDirectory() {

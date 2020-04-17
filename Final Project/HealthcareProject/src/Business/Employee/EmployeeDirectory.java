@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public class EmployeeDirectory {
     
@@ -25,6 +25,7 @@ public class EmployeeDirectory {
     public Employee createEmployee(String name,int i){
         Employee employee = new Employee();
         employee.setName(name);
+        employee.setId(i);
         employeeList.add(employee);
         return employee;
     }
