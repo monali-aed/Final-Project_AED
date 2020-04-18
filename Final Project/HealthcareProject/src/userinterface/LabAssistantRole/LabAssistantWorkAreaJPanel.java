@@ -145,6 +145,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
+        
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0){
