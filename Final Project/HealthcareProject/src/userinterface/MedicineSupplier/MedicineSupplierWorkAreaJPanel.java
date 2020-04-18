@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Network.Network;
 import Business.Organization.MedicineVaccineSupplierOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.MedicineSupplierWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -130,7 +131,7 @@ public class MedicineSupplierWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
-int selectedRow = tblSupplierWorkRequests.getSelectedRow();
+     int selectedRow = tblSupplierWorkRequests.getSelectedRow();
 
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please Select a Row.");
@@ -156,7 +157,19 @@ int selectedRow = tblSupplierWorkRequests.getSelectedRow();
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
 
-       
+          int selectedRow = tblSupplierWorkRequests.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row.");
+        }
+        else
+        {
+        MedicineSupplierWorkRequest request = (MedicineSupplierWorkRequest)tblSupplierWorkRequests.getValueAt(selectedRow, 0);
+
+        request.setComments("Proceed");
+        populateTable();
+
+        }
     }//GEN-LAST:event_processJButtonActionPerformed
 
 
