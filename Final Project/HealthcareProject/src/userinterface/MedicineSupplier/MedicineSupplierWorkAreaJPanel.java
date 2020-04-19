@@ -5,6 +5,17 @@
  */
 package userinterface.MedicineSupplier;
 
+import Business.EcoSystem;
+import Business.Network.Network;
+import Business.Organization.MedicineVaccineSupplierOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.MedicineSupplierWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author monal
@@ -14,10 +25,17 @@ public class MedicineSupplierWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form MedicineSupplierWorkAreaJPanel
      */
+    private JPanel container;
+    private EcoSystem business;
+    private UserAccount userAccount;
+   
+   private Network network;
     public MedicineSupplierWorkAreaJPanel() {
         initComponents();
+        populateTable();
     }
-
+   public void populateTable(){
+            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,13 +131,45 @@ public class MedicineSupplierWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
+     int selectedRow = tblSupplierWorkRequests.getSelectedRow();
 
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row.");
+        }
+        else
+        {
+        WorkRequest request = (WorkRequest)tblSupplierWorkRequests.getValueAt(selectedRow, 0);
+        if(!request.getStatus().equalsIgnoreCase("Processing") && !request.getStatus().equalsIgnoreCase("Completed"))
+        {
+        request.setReceiver(userAccount);
+        request.setStatus("Pending");
+        populateTable();
+        }
+        
+        else
+        {
+         JOptionPane.showMessageDialog(null, "This request is either processed or completed. Please select other request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        }
         
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
 
-       
+          int selectedRow = tblSupplierWorkRequests.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row.");
+        }
+        else
+        {
+        MedicineSupplierWorkRequest request = (MedicineSupplierWorkRequest)tblSupplierWorkRequests.getValueAt(selectedRow, 0);
+
+        request.setComments("Proceed");
+        populateTable();
+
+        }
     }//GEN-LAST:event_processJButtonActionPerformed
 
 

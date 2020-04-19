@@ -7,9 +7,9 @@ package userinterface.Pharmacist;
 
 /**
  *
- * @author sylvesternoronha
+ * @author monal
  */
-public class SupplyMedicine extends javax.swing.JFrame {
+public class SupplyMedicine extends javax.swing.JPanel {
 
     /**
      * Creates new form SupplyMedicine
@@ -28,18 +28,13 @@ public class SupplyMedicine extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblBanner = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicines = new javax.swing.JTable();
-        btnAdd = new javax.swing.JButton();
+        btnSupplyMedicine = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMedicinesSupply = new javax.swing.JTable();
-        btnSupplyMedicine = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblBanner.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        lblBanner.setText("Supply Medicine");
+        btnAdd = new javax.swing.JButton();
+        lblBanner = new javax.swing.JLabel();
 
         tblMedicines.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         tblMedicines.setModel(new javax.swing.table.DefaultTableModel(
@@ -61,11 +56,11 @@ public class SupplyMedicine extends javax.swing.JFrame {
         tblMedicines.setRowHeight(30);
         jScrollPane1.setViewportView(tblMedicines);
 
-        btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnAdd.setText("ADD>>");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnSupplyMedicine.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnSupplyMedicine.setText("Supply Medicine");
+        btnSupplyMedicine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnSupplyMedicineActionPerformed(evt);
             }
         });
 
@@ -96,84 +91,91 @@ public class SupplyMedicine extends javax.swing.JFrame {
         tblMedicinesSupply.setRowHeight(30);
         jScrollPane2.setViewportView(tblMedicinesSupply);
 
-        btnSupplyMedicine.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnSupplyMedicine.setText("Supply Medicine");
-        btnSupplyMedicine.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnAdd.setText("ADD>>");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSupplyMedicineActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
+
+        lblBanner.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        lblBanner.setText("Supply Medicine");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(lblBanner))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSupplyMedicine)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
-                                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))))
-                .addGap(101, 101, 101)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                        .addComponent(lblBanner)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnSupplyMedicine)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblBanner)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblBanner)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(btnAdd)))))
-                .addGap(77, 77, 77)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(btnAdd)))
+                .addGap(18, 18, 18)
                 .addComponent(btnSupplyMedicine)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 753, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 526, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSupplyMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplyMedicineActionPerformed
+        // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_btnSupplyMedicineActionPerformed
+
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+       
 
 
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnSupplyMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplyMedicineActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnSupplyMedicineActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

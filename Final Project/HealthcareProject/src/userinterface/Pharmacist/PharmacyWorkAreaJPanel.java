@@ -7,14 +7,14 @@ package userinterface.Pharmacist;
 
 /**
  *
- * @author sylvesternoronha
+ * @author monal
  */
-public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
+public class PharmacyWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form PharmacistWorkAreaJPanel
+     * Creates new form PharmacyWorkAreaJPanel
      */
-    public PharmacistWorkAreaJPanel() {
+    public PharmacyWorkAreaJPanel() {
         initComponents();
     }
 
@@ -27,12 +27,10 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        splitPane = new javax.swing.JSplitPane();
+        rightPanel = new javax.swing.JPanel();
         leftPanel = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnCheckInventory = new javax.swing.JButton();
-        rightPanel = new javax.swing.JPanel();
         homeJPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPatient = new javax.swing.JTable();
@@ -42,9 +40,7 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
         btnAccept = new javax.swing.JButton();
         lblBanner = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        splitPane.setDividerLocation(220);
+        rightPanel.setLayout(new java.awt.CardLayout());
 
         btnHome.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnHome.setText("Home");
@@ -70,7 +66,7 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCheckInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCheckInventory, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -80,14 +76,9 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
                 .addComponent(btnHome)
                 .addGap(18, 18, 18)
                 .addComponent(btnCheckInventory)
-                .addContainerGap(587, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        splitPane.setLeftComponent(leftPanel);
-
-        rightPanel.setLayout(new java.awt.CardLayout());
-
-        homeJPanel.setBackground(new java.awt.Color(240, 240, 240));
         homeJPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 homeJPanelComponentShown(evt);
@@ -156,7 +147,7 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
             .addGroup(homeJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(homeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addGroup(homeJPanelLayout.createSequentialGroup()
                         .addGroup(homeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,51 +170,36 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAccept)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        rightPanel.add(homeJPanel, "card2");
-
-        splitPane.setRightComponent(rightPanel);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1133, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1127, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(homeJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(homeJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
+            .addComponent(leftPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnCheckInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInventoryActionPerformed
-
-    }//GEN-LAST:event_btnCheckInventoryActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
 
@@ -231,18 +207,24 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-
+       
+          
 
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void homeJPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_homeJPanelComponentShown
         // TODO add your handling code here:
-
+       
     }//GEN-LAST:event_homeJPanelComponentShown
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        
+
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnCheckInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInventoryActionPerformed
+       
+    }//GEN-LAST:event_btnCheckInventoryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -251,13 +233,11 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProcess;
     private javax.swing.JPanel homeJPanel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel rightPanel;
-    private javax.swing.JSplitPane splitPane;
     private javax.swing.JTable tblPatient;
     private javax.swing.JTable tblSupplierMedicineRequests;
     // End of variables declaration//GEN-END:variables
