@@ -5,6 +5,9 @@
  */
 package userinterface.NurseRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author monal
@@ -14,6 +17,7 @@ public class ViewBloodBank extends javax.swing.JPanel {
     /**
      * Creates new form ViewBloodBank
      */
+    JPanel container;
     public ViewBloodBank() {
         initComponents();
     }
@@ -111,7 +115,9 @@ public class ViewBloodBank extends javax.swing.JPanel {
 
     private void btnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBankActionPerformed
         // TODO add your handling code here:
-        
+         container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
         
     }//GEN-LAST:event_btnBankActionPerformed
 
