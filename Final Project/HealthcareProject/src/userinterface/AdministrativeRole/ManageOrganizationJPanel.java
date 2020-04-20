@@ -41,7 +41,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 //        for (Type type : Organization.Type.values()){
 //            if (!type.getValue().equals(Type.Admin.getValue()))
 //            {   
-                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital))
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.HOSPITAL))
                 {
                 boxOrganization.addItem(Organization.Type.Doctor);
                 boxOrganization.addItem(Organization.Type.Lab);

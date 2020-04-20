@@ -6,11 +6,11 @@ import Business.UserAccount.UserAccount;
 
 /**
  *
- * @author rrheg
+ * @author monal
  */
 public class ConfigureASystem {
     
-    public static EcoSystem configure(){
+   public static EcoSystem configure(){
         
         EcoSystem system = EcoSystem.getInstance();
         
@@ -21,9 +21,9 @@ public class ConfigureASystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH",1);
+        Employee employee = system.getEmployeeDirectory().createEmployee("AKA", 1);
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("a", "a", employee, new SystemAdminRole());
         
         return system;
     }
