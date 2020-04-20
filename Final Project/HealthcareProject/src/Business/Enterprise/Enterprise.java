@@ -14,30 +14,48 @@ import Business.Organization.OrganizationDirectory;
  */
 public abstract class Enterprise extends Organization{
     
-    private EnterpriseType enterpriseType;
-    private OrganizationDirectory organizationDirectory;
-
-    public OrganizationDirectory getOrganizationDirectory() {
-        return organizationDirectory;
+    public Enterprise(String name, EnterpriseType enterpriseType)
+    {
+        super(name);
+        this.enterpriseType = enterpriseType;
+        organizationDirectory = new OrganizationDirectory();
     }
     
+    private EnterpriseType enterpriseType;
+    private OrganizationDirectory organizationDirectory;
+    
     public enum EnterpriseType{
-        Hospital("Hospital"),
+        HOSPITAL("Hospital"),
+        EQUIPMENT_SUPPLIERS("EquipmentSuppliers"),
         BLOOD_BANK("BloodBank"),
         SUPPLIER("Medicine Supplier");
         
-        private String value;
         
-        private EnterpriseType(String value){
-            this.value=value;
+        private EnterpriseType(String value)
+        {
+            this.value = value;
         }
+        
+        private String value;
+
         public String getValue() {
             return value;
         }
-        @Override
-        public String toString(){
-        return value;
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+        
+        
+        @Override 
+        public String toString()
+        {
+            return value;
+        }
     }
+
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
     }
 
     public EnterpriseType getEnterpriseType() {
@@ -48,9 +66,6 @@ public abstract class Enterprise extends Organization{
         this.enterpriseType = enterpriseType;
     }
     
-    public Enterprise(String name,EnterpriseType type){
-        super(name);
-        this.enterpriseType=type;
-        organizationDirectory=new OrganizationDirectory();
-    }
+    
+    
 }

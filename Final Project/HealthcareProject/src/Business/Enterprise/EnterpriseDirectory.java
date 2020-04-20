@@ -35,7 +35,7 @@ public class EnterpriseDirectory {
        Enterprise enterprise = null;
         if(null != type)
         switch (type) {
-            case Hospital:
+            case HOSPITAL:
                 enterprise = new HospitalEnterprise(name);
                 enterpriseList.add(enterprise);
                 break;
