@@ -14,6 +14,8 @@ import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -116,6 +118,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         lblUserName.setText("User Name:");
 
         txtUserName.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserNameActionPerformed(evt);
+            }
+        });
+        txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserNameKeyTyped(evt);
+            }
+        });
 
         lblPassword.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -364,6 +376,15 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             
          }    
     }//GEN-LAST:event_txtRePasswordKeyPressed
+ 
+    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserNameActionPerformed
+
+    private void txtUserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtUserNameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
