@@ -5,6 +5,14 @@
  */
 package userinterface.NurseRole;
 
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.NurseOrganization;
+import Business.Patient.Patient;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author monal
@@ -14,9 +22,22 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NurseWorkAreaJPanel
      */
-    public NurseWorkAreaJPanel() {
+     JPanel container;
+    NurseOrganization nurseOrganization;
+    UserAccount userAccount;
+    Enterprise enterprise;
+    Network network;
+    public NurseWorkAreaJPanel(JPanel container, UserAccount account, NurseOrganization nurseOrganization, Enterprise enterprise, Network network) {
         initComponents();
+        this.container = container;
+        this.nurseOrganization = nurseOrganization;
+        this.userAccount = account;
+        this.enterprise = enterprise;
+        this.network = network;
+        refreshTable();
+        populateBloodRequestTable();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
