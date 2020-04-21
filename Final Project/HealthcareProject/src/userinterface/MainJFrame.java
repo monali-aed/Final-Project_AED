@@ -647,7 +647,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(jPanelDoctorsAvailability, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPanel.addTab("Doctor's Availability", jPanelDoctorAvailability);
+        jTabbedPanel.addTab("Doctor's Schedule", jPanelDoctorAvailability);
 
         jPanelEmployment.setBackground(new java.awt.Color(0, 153, 204));
 
@@ -816,7 +816,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(270, Short.MAX_VALUE))
         );
 
-        jTabbedPanel.addTab("Careers", jPanelEmployment);
+        jTabbedPanel.addTab("Employment", jPanelEmployment);
 
         jPanelDonate.setBackground(new java.awt.Color(0, 153, 204));
 
@@ -992,7 +992,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(270, Short.MAX_VALUE))
         );
 
-        jTabbedPanel.addTab("Donate", jPanelDonate);
+        jTabbedPanel.addTab("Donation", jPanelDonate);
 
         jPanelStatistics.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1160,7 +1160,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(0, 153, 204));
         jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Funded and Supported by below Suppliers. We appreciate the contribution towards this non-profit organisation.");
 
         javax.swing.GroupLayout jPanelEmergencyLayout = new javax.swing.GroupLayout(jPanelEmergency);
         jPanelEmergency.setLayout(jPanelEmergencyLayout);
@@ -1182,7 +1181,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
         );
 
-        jTabbedPanel.addTab("Support", jPanelEmergency);
+        jTabbedPanel.addTab("Supplier", jPanelEmergency);
 
         container.add(jTabbedPanel, "card2");
 
@@ -1440,6 +1439,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void txtFName1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFName1FocusLost
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtFName1FocusLost
 
     private void txtFName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFName1ActionPerformed

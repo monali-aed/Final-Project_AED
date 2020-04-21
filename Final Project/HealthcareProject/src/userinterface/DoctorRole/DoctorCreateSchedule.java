@@ -25,7 +25,6 @@ public class DoctorCreateSchedule extends javax.swing.JPanel {
      * Creates new form DoctorCreateSchedule
      */
     JPanel doctorContainerRightJPanel;
-   // DoctorRole doctor;
     UserAccount userAccount;
     ScheduleDirectory scheduleDirectory;
     
