@@ -91,9 +91,10 @@ public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(assignJButton)
-                                .addGap(36, 36, 36)
-                                .addComponent(processJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(309, 309, 309)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(assignJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(processJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 215, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -104,11 +105,11 @@ public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignJButton)
-                    .addComponent(processJButton))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assignJButton)
+                .addGap(4, 4, 4)
+                .addComponent(processJButton)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
