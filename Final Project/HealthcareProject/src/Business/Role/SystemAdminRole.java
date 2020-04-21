@@ -2,25 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Role;
+package business.Role;
 
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
+import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userInterface.SystemAdmin.SystemAdminJPanel;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public class SystemAdminRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem ecosystem,Network network) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer, ecosystem, network);
+    public JPanel createWorkArea(JPanel container, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, Network network) {
+        return new SystemAdminJPanel(container, system, network);
     }
     
 }

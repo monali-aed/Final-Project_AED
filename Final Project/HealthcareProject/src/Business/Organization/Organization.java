@@ -2,19 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Organization;
+package business.Organization;
 
-import Business.Employee.EmployeeDirectory;
-import Business.Patient.PatientDirectory;
-import Business.Role.Role;
-import Business.UserAccount.UserAccountDirectory;
-import Business.WorkQueue.ScheduleDirectory;
-import Business.WorkQueue.WorkQueue;
+import business.Employee.EmployeeDirectory;
+import business.Inventory.Blood;
+import business.Inventory.BloodDirectory;
+import business.Patient.PatientDirectory;
+import business.Role.Role;
+import business.UserAccount.UserAccountDirectory;
+import business.WorkQueue.ScheduleDirectory;
+import business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public abstract class Organization {
 
@@ -25,17 +27,20 @@ public abstract class Organization {
     private PatientDirectory patientDirectory;
     private ScheduleDirectory scheduleDirectory;
     private int organizationID;
-    private static int counter=0;
-     private String type;
+    private static int counter;
+    private String type;
+    
     public enum Type{
-        Admin("Admin Organization"),
-        Doctor("Doctor Organization"),
+        Admin("Admin Organization"), 
+        Doctor("Doctor Organization"), 
         Lab("Lab Organization"),
-        Supplier("MedicineVaccineSupplier Organization"),
+        Supplier("MedicineSupplier Organization"),
+        EquipmentSupplier("EquipmentSupplier Organization"),
         Nurse("Nurse Organization"),
         Receptionist("Receptionist Organization"),
         Pharmacist("Pharmacist Organiation"),
         BloodSupplier("BloodBank Organization");
+        
         private String value;
         private Type(String value) {
             this.value = value;
@@ -57,10 +62,11 @@ public abstract class Organization {
     }
 
     public abstract ArrayList<Role> getSupportedRole();
-     public String getType()
+    public String getType()
     {
         return null;
     }
+    
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
@@ -93,6 +99,13 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
-    
+
+    public PatientDirectory getPatientDirectory() {
+        return patientDirectory;
+    }
+
+    public ScheduleDirectory getScheduleDirectory() {
+        return scheduleDirectory;
+    }
     
 }

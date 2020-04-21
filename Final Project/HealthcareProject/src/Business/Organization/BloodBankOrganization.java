@@ -3,29 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Organization;
+package business.Organization;
 
-import java.util.ArrayList;
-import Business.Role.BloodSupplierRole;
-import Business.Role.Role;
+import business.Role.BloodSupplierRole;
+import business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
  * @author monal
  */
-public class BloodBankOrganization {
-    BloodBankOrganization() {
-        super();
-    }
-
+public class BloodBankOrganization extends Organization {
     
+    public BloodBankOrganization() {
+        super(Organization.Type.BloodSupplier.getValue());
+    }
+    
+     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new BloodSupplierRole());
         return roles;
     }
 
+    @Override
     public String getType() {
     return "BloodBank Organization";
     }

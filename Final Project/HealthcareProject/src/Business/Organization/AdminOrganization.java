@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Organization;
+package business.Organization;
 
-import Business.Role.AdminRole;
-import Business.Role.Role;
+import business.Role.AdminRole;
+import business.Role.Role;
 import java.util.ArrayList;
 
 /**
@@ -25,8 +25,9 @@ public class AdminOrganization extends Organization{
         return roles;
     }
 
+    @Override
     public String getType() {
     return "Admin Organization";
         }
-    
+     
 }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Patient;
+package business.Patient;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,12 +15,14 @@ import java.util.Calendar;
  * @author monal
  */
 public class VitalSigns {
+    
     private String dateRecorded;
     private float bodyTemp;
     private float pulseRate;
     private float respirationRate;
     private float bloodPressure;
     private String comments;
+    
     public VitalSigns()
     {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -29,10 +32,6 @@ public class VitalSigns {
 
     public String getDateRecorded() {
         return dateRecorded;
-    }
-
-    public void setDateRecorded(String dateRecorded) {
-        this.dateRecorded = dateRecorded;
     }
 
     public float getBodyTemp() {
@@ -74,6 +73,5 @@ public class VitalSigns {
     public void setComments(String comments) {
         this.comments = comments;
     }
-
     
 }

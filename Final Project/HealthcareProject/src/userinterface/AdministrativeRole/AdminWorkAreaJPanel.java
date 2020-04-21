@@ -1,15 +1,19 @@
+/*
+ * AdminWorkAreaJPanel.java
+ *
+ * Created on October 10, 2008, 8:50 AM
+ */
 
+package UserInterface.AdministrativeRole;
 
-package userinterface.AdministrativeRole;
-
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.AdminOrganization;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.AdminWorkRequest;
-import Business.WorkQueue.WorkRequest;
+import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import business.Organization.AdminOrganization;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.AdminWorkRequest;
+import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,24 +21,22 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author  raunak
+ * @author  monal
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     
-    JPanel userProcessContainer;
+    JPanel container;
     Enterprise enterprise;
-    EcoSystem business;
+    EcoSystem system;
     Network network;
     UserAccount userAccount;
     AdminOrganization organization;
     /** Creates new form AdminWorkAreaJPanel */
-   
-
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization adminOrganization, Enterprise enterprise, EcoSystem business, Network network) {
+    public AdminWorkAreaJPanel(JPanel container,UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, Network network) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.container = container;
         this.enterprise = enterprise;
-        this.business = business;
+        this.system = system;
         this.network = network;
         this.userAccount = userAccount;
         this.organization = (AdminOrganization)organization;
@@ -51,9 +53,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = request.getRequestDate();
             row[1] = request.getPatientName();
-            row[2] = request;         
+            row[2] = request;
             row[3] = request.getRequestType();
-            String result = request.getStatus();
+            String result = ((AdminWorkRequest) request).getStatus();
             row[4] = result == null ? "Waiting" : result;
             
             model.addRow(row);
@@ -68,7 +70,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         banner = new javax.swing.JLabel();
         btnManageUser = new javax.swing.JButton();
         btnManageEmployee = new javax.swing.JButton();
@@ -79,18 +80,17 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         tblWorkRequest = new javax.swing.JTable();
         btnProcess = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+        setBackground(new java.awt.Color(0, 153, 204));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel1formComponentShown(evt);
+                formComponentShown(evt);
             }
         });
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         banner.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        banner.setText("My Work Area -Adminstrative Role");
-        jPanel1.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 730, -1));
+        banner.setText("Aminstrative Admin Work Area");
+        add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, -1));
 
         btnManageUser.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnManageUser.setText("Manage User");
@@ -99,7 +99,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageUserActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 240, -1));
+        add(btnManageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 220, 240, -1));
 
         btnManageEmployee.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnManageEmployee.setText("Manage Employee");
@@ -108,7 +108,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageEmployeeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 180, 240, -1));
+        add(btnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 220, 240, -1));
 
         btnManageOrganization.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnManageOrganization.setText("Manage Organization");
@@ -117,15 +117,15 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageOrganizationActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManageOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, -1, -1));
+        add(btnManageOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
 
         lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         lblEnterprise.setText("EnterPrise :");
-        jPanel1.add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 30));
+        add(lblEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 30));
 
         lblValue.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblValue.setText("<value>");
-        jPanel1.add(lblValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 370, -1));
+        add(lblValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 370, -1));
 
         tblWorkRequest.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         tblWorkRequest.setModel(new javax.swing.table.DefaultTableModel(
@@ -146,8 +146,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         tblWorkRequest.setRowHeight(30);
         jScrollPane1.setViewportView(tblWorkRequest);
+        if (tblWorkRequest.getColumnModel().getColumnCount() > 0) {
+            tblWorkRequest.getColumnModel().getColumn(0).setResizable(false);
+            tblWorkRequest.getColumnModel().getColumn(1).setResizable(false);
+            tblWorkRequest.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 290, 1680, 350));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 290, 1680, 350));
 
         btnProcess.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnProcess.setText("Process");
@@ -156,61 +161,60 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnProcessActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 290, -1));
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1800, 970));
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 670, 290, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageUserActionPerformed
         // TODO add your handling code here:
-        ManageUserAccountJPanel manageUserAccountJPanel = new ManageUserAccountJPanel(userProcessContainer, enterprise, business);
-        userProcessContainer.add("ManageUserAccountJPanel", manageUserAccountJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        ManageUserAccountJPanel manageUserAccountJPanel = new ManageUserAccountJPanel(container, enterprise, system);
+        container.add("ManageUserAccountJPanel", manageUserAccountJPanel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
     }//GEN-LAST:event_btnManageUserActionPerformed
 
     private void btnManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeeActionPerformed
 
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("ManageEmployeeJPanel", manageEmployeeJPanel);
+        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(container, enterprise.getOrganizationDirectory());
+        container.add("ManageEmployeeJPanel", manageEmployeeJPanel);
 
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+        
     }//GEN-LAST:event_btnManageEmployeeActionPerformed
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
 
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(), enterprise);
-        userProcessContainer.add("ManageOrganizationJPanel", manageOrganizationJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(container, enterprise.getOrganizationDirectory(), enterprise);
+        container.add("ManageOrganizationJPanel", manageOrganizationJPanel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
     }//GEN-LAST:event_btnManageOrganizationActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
 
         // TODO add your handling code here:
 
-        int selectedRow= tblWorkRequest.getSelectedRow();
+       int selectedRow= tblWorkRequest.getSelectedRow();
+       
+       if(selectedRow < 0)
+       {
+          JOptionPane.showMessageDialog(null, "Please select a row!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+       }
+       else
+       {
+           WorkRequest workRequest=(WorkRequest) tblWorkRequest.getValueAt(selectedRow,2);
+           workRequest.setStatus("Completed");
+           workRequest.setReceiver(userAccount);
+           populateTable();
 
-        if(selectedRow < 0)
-        {
-            JOptionPane.showMessageDialog(null, "Please select a row!!!", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        else
-        {
-            WorkRequest workRequest=(WorkRequest) tblWorkRequest.getValueAt(selectedRow,2);
-            workRequest.setStatus("Completed");
-            workRequest.setReceiver(userAccount);
-            populateTable();
+       }
 
-        }
     }//GEN-LAST:event_btnProcessActionPerformed
 
-    private void jPanel1formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1formComponentShown
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         populateTable();
-    }//GEN-LAST:event_jPanel1formComponentShown
+    }//GEN-LAST:event_formComponentShown
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -219,7 +223,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageOrganization;
     private javax.swing.JButton btnManageUser;
     private javax.swing.JButton btnProcess;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEnterprise;
     private javax.swing.JLabel lblValue;

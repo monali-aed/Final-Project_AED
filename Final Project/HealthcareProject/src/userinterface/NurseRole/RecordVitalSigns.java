@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NurseRole;
+package userInterface.NurseRole;
 
+import business.Patient.Patient;
+import business.Patient.VitalSigns;
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author monal
+ * @author maalp
  */
 public class RecordVitalSigns extends javax.swing.JPanel {
 
@@ -18,8 +22,11 @@ public class RecordVitalSigns extends javax.swing.JPanel {
      * Creates new form RecordVitalSigns
      */
     JPanel container;
-    public RecordVitalSigns() {
+    Patient patient;
+    public RecordVitalSigns(JPanel container, Patient patient) {
         initComponents();
+        this.container = container;
+        this.patient = patient;
     }
 
     /**
@@ -31,11 +38,9 @@ public class RecordVitalSigns extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtPulseRate = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btnRecord = new javax.swing.JButton();
-        txtBloodPressure = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -44,19 +49,14 @@ public class RecordVitalSigns extends javax.swing.JPanel {
         txtComments = new javax.swing.JTextArea();
         txtBodyTemp = new javax.swing.JTextField();
         txtRespRate = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        txtPulseRate = new javax.swing.JTextField();
+        txtBloodPressure = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
-        txtPulseRate.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        txtPulseRate.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPulseRateFocusLost(evt);
-            }
-        });
-        txtPulseRate.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPulseRateKeyTyped(evt);
-            }
-        });
+        setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        jLabel1.setText("RECORD VITAL SIGN:");
 
         btnRecord.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnRecord.setText("Record");
@@ -66,28 +66,8 @@ public class RecordVitalSigns extends javax.swing.JPanel {
             }
         });
 
-        txtBloodPressure.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        txtBloodPressure.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBloodPressureFocusLost(evt);
-            }
-        });
-        txtBloodPressure.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBloodPressureKeyTyped(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel2.setText("Body Temperature:");
-
-        btnBack.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnBack.setText("<<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel3.setText("Respiration Rate:");
@@ -135,8 +115,37 @@ public class RecordVitalSigns extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        jLabel1.setText("RECORD VITAL SIGN:");
+        txtPulseRate.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtPulseRate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPulseRateFocusLost(evt);
+            }
+        });
+        txtPulseRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPulseRateKeyTyped(evt);
+            }
+        });
+
+        txtBloodPressure.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        txtBloodPressure.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBloodPressureFocusLost(evt);
+            }
+        });
+        txtBloodPressure.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBloodPressureKeyTyped(evt);
+            }
+        });
+
+        btnBack.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -166,7 +175,7 @@ public class RecordVitalSigns extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack)
                     .addComponent(jLabel1))
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(586, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,70 +204,168 @@ public class RecordVitalSigns extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnRecord)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPulseRateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPulseRateFocusLost
-
-        try
-        {
-        }
-        catch(Exception e)
-        {
-
-        }
-    }//GEN-LAST:event_txtPulseRateFocusLost
-
-    private void txtPulseRateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPulseRateKeyTyped
-    
-    }//GEN-LAST:event_txtPulseRateKeyTyped
-
     private void btnRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecordActionPerformed
         // TODO add your handling code here:
+        
+        if(!txtRespRate.getText().matches("[0-9]+")){
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtRespRate.setText("");
+        }
+        else if(Integer.parseInt(txtRespRate.getText())<5 || Integer.parseInt(txtRespRate.getText())>30 )
+        {
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtRespRate.setText("");
+        }
+        else if(!txtPulseRate.getText().matches("[0-9]+")){
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtPulseRate.setText("");
+        }
+        else if(Integer.parseInt(txtPulseRate.getText())< 30 || Integer.parseInt(txtPulseRate.getText())> 120 )
+        {
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtPulseRate.setText("");
+        }
+        else if(!txtBloodPressure.getText().matches("[0-9]+")){
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtBloodPressure.setText("");
+        }
+        else if(Integer.parseInt(txtBloodPressure.getText())< 0 || Integer.parseInt(txtBloodPressure.getText()) > 200 )
+        {
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtBloodPressure.setText("");
+        }
+        else if(!txtBodyTemp.getText().matches("[0-9]+")){
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtBodyTemp.setText("");
+        }
+        else if(Integer.parseInt(txtBodyTemp.getText())<80 ||Integer.parseInt(txtBodyTemp.getText())>120){
+          JOptionPane.showMessageDialog(null,"Please enter proper values!", "Warning", JOptionPane.WARNING_MESSAGE);
+          txtBodyTemp.setText("");
+        }
+        else if(txtComments.getText().isEmpty())
+       {
+           JOptionPane.showMessageDialog(null,"Please enter some values!", "Warning", JOptionPane.WARNING_MESSAGE);
 
+       }
+        else{
+        
       
-       
+        VitalSigns vs = new VitalSigns();
+        vs.setBloodPressure(Float.parseFloat(txtBloodPressure.getText()));
+        vs.setBodyTemp(Float.parseFloat(txtBodyTemp.getText()));
+        vs.setComments(txtComments.getText());
+        vs.setPulseRate(Float.parseFloat(txtPulseRate.getText()));
+        vs.setRespirationRate(Float.parseFloat(txtRespRate.getText()));
+        patient.getVitalSignHistory().add(vs);
+        
+        txtBloodPressure.setText("");
+        txtBodyTemp.setText("");
+        txtComments.setText("");
+        txtPulseRate.setText("");
+        txtRespRate.setText("");
+        JOptionPane.showMessageDialog(null, "Vitals Recorded","Success",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnRecordActionPerformed
 
-    private void txtBloodPressureFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBloodPressureFocusLost
+    private void txtRespRateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRespRateFocusLost
+        
+       try
+      {
+      }
+      catch(Exception e)
+      {
+      
+      }
+    }//GEN-LAST:event_txtRespRateFocusLost
 
-     
+    private void txtPulseRateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPulseRateFocusLost
+      
+        try
+      {
+      }
+      catch(Exception e)
+      {
+      
+      }
+    }//GEN-LAST:event_txtPulseRateFocusLost
+
+    private void txtBloodPressureFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBloodPressureFocusLost
+      
+        try
+      {
+      }
+      catch(Exception e)
+      {
+      
+      }
     }//GEN-LAST:event_txtBloodPressureFocusLost
 
-    private void txtBloodPressureKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBloodPressureKeyTyped
-         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBloodPressureKeyTyped
+    private void txtCommentsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCommentsFocusLost
+       
+    }//GEN-LAST:event_txtCommentsFocusLost
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-         container.remove(this);
+        container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtCommentsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCommentsFocusLost
-
-    }//GEN-LAST:event_txtCommentsFocusLost
-
     private void txtBodyTempFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBodyTempFocusLost
-        
+      try
+      {
+      }
+      catch(Exception e)
+      {
+      
+      }
     }//GEN-LAST:event_txtBodyTempFocusLost
 
     private void txtBodyTempKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBodyTempKeyReleased
-       
-// TODO add your handling code here:
+    char ch = evt.getKeyChar();
+       if(!(Character.isDigit(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isAlphabetic(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter numerical values only.");
+       }    // TODO add your handling code here:
     }//GEN-LAST:event_txtBodyTempKeyReleased
 
-    private void txtRespRateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRespRateFocusLost
-
-    }//GEN-LAST:event_txtRespRateFocusLost
-
     private void txtRespRateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespRateKeyTyped
-         // TODO add your handling code here:
+    char ch = evt.getKeyChar();
+       if(!(Character.isDigit(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isAlphabetic(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter numerical values only.");
+       }    // TODO add your handling code here:
     }//GEN-LAST:event_txtRespRateKeyTyped
+
+    private void txtPulseRateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPulseRateKeyTyped
+    char ch = evt.getKeyChar();
+       if(!(Character.isDigit(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isAlphabetic(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter numerical values only.");
+       }    // TODO add your handling code here:
+    }//GEN-LAST:event_txtPulseRateKeyTyped
+
+    private void txtBloodPressureKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBloodPressureKeyTyped
+    char ch = evt.getKeyChar();
+       if(!(Character.isDigit(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isAlphabetic(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter numerical values only.");
+       }    // TODO add your handling code here:
+    }//GEN-LAST:event_txtBloodPressureKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

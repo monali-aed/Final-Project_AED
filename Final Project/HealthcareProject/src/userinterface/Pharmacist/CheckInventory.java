@@ -3,7 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Pharmacist;
+package userInterface.Pharmacist;
+
+import business.Enterprise.BloodBankEnterprise;
+import business.Enterprise.Enterprise;
+import business.Enterprise.SupplierEnterprise;
+import business.Inventory.Medicine;
+import business.Inventory.MedicineDirectory;
+import business.Network.Network;
+import business.Organization.BloodBankOrganization;
+import business.Organization.Organization;
+import business.Organization.SupplierOrganization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.MedicineSupplierWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,8 +30,21 @@ public class CheckInventory extends javax.swing.JPanel {
     /**
      * Creates new form CheckInventory
      */
-    public CheckInventory() {
+    JPanel rightJPanel;
+    UserAccount userAccount;
+    MedicineDirectory medicineDirectory;
+    private static int count =1;
+    Network network;
+
+    public CheckInventory(JPanel container, UserAccount userAccount, MedicineDirectory medicineDirectory, Network network) {
         initComponents();
+        this.rightJPanel=container;
+        this.userAccount=userAccount;
+        this.medicineDirectory= userAccount.getMedicineDirectory();
+        populateMedicineTable();
+        populateAllMedicineTable();
+        this.network = network;
+       
     }
 
     /**
@@ -27,9 +56,6 @@ public class CheckInventory extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSubmit = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
-        lblBanner = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicines = new javax.swing.JTable();
         btnRequestMedicines = new javax.swing.JButton();
@@ -38,27 +64,11 @@ public class CheckInventory extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblRequestMedicines = new javax.swing.JTable();
+        btnSubmit = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        lblBanner = new javax.swing.JLabel();
 
-        btnSubmit.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnSubmit.setText("Submit");
-        btnSubmit.setEnabled(false);
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
-            }
-        });
-
-        btnRemove.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnRemove.setText("<<REMOVE");
-        btnRemove.setEnabled(false);
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-
-        lblBanner.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        lblBanner.setText("Inventory Check");
+        setBackground(new java.awt.Color(0, 153, 204));
 
         tblMedicines.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         tblMedicines.setModel(new javax.swing.table.DefaultTableModel(
@@ -79,6 +89,10 @@ public class CheckInventory extends javax.swing.JPanel {
         });
         tblMedicines.setRowHeight(30);
         jScrollPane1.setViewportView(tblMedicines);
+        if (tblMedicines.getColumnModel().getColumnCount() > 0) {
+            tblMedicines.getColumnModel().getColumn(0).setResizable(false);
+            tblMedicines.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         btnRequestMedicines.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnRequestMedicines.setText("Request Medicines");
@@ -108,6 +122,9 @@ public class CheckInventory extends javax.swing.JPanel {
         tblAllMedicines.setEnabled(false);
         tblAllMedicines.setRowHeight(30);
         jScrollPane2.setViewportView(tblAllMedicines);
+        if (tblAllMedicines.getColumnModel().getColumnCount() > 0) {
+            tblAllMedicines.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnAdd.setText("ADD>>");
@@ -138,6 +155,30 @@ public class CheckInventory extends javax.swing.JPanel {
         tblRequestMedicines.setEnabled(false);
         tblRequestMedicines.setRowHeight(30);
         jScrollPane3.setViewportView(tblRequestMedicines);
+        if (tblRequestMedicines.getColumnModel().getColumnCount() > 0) {
+            tblRequestMedicines.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        btnSubmit.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnSubmit.setText("Submit");
+        btnSubmit.setEnabled(false);
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+
+        btnRemove.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnRemove.setText("<<REMOVE");
+        btnRemove.setEnabled(false);
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
+        lblBanner.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        lblBanner.setText("Inventory Check");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,27 +187,22 @@ public class CheckInventory extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRemove))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblBanner)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRequestMedicines)
-                .addGap(275, 275, 275))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRemove)
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblBanner)
+                            .addComponent(btnRequestMedicines))
+                        .addGap(0, 246, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,36 +218,153 @@ public class CheckInventory extends javax.swing.JPanel {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(88, 88, 88)
+                            .addGap(90, 90, 90)
                             .addComponent(btnAdd)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnRemove)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnSubmit)
-                            .addGap(110, 110, 110))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnSubmit))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
+    
+     public void populateAllMedicineTable()
+    {
+         DefaultTableModel model = (DefaultTableModel) tblAllMedicines.getModel();
+         model.setRowCount(0);
+         for(Medicine medicine: medicineDirectory.getMedicineList())
+         {
+           Object[] row= new Object[1];
+           row[0]=medicine;
+           model.addRow(row);
+         }
      
-    }//GEN-LAST:event_btnSubmitActionPerformed
+    }
+     
+     public void populateMedicineTable()
+     {
+        DefaultTableModel model = (DefaultTableModel) tblMedicines.getModel();
+        model.setRowCount(0);
+        for(Medicine medicine: medicineDirectory.getMedicineList())
+       {
+           Object[] row= new Object[2];
+           row[0]=medicine;
+           row[1]=medicine.getQuantity();
+           model.addRow(row);
+       }
+     }
+     
+     
+    
+    private void btnRequestMedicinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestMedicinesActionPerformed
+        tblAllMedicines.setEnabled(true);
+        btnAdd.setEnabled(true);
+        btnSubmit.setEnabled(true);
+        tblRequestMedicines.setEnabled(true);
+       
+    }//GEN-LAST:event_btnRequestMedicinesActionPerformed
+
+    public void populateRequestMedicineTable()
+    {
+        int selectedRow= tblAllMedicines.getSelectedRow();
+        Medicine medicine= (Medicine) tblAllMedicines.getValueAt(selectedRow,0);
+        DefaultTableModel model = (DefaultTableModel) tblRequestMedicines.getModel();
+        Object[] row= new Object[1];
+        row[0]=medicine;
+        model.addRow(row);
+    }
+            
+    
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        int selectedRow= tblAllMedicines.getSelectedRow();
+        if(selectedRow<0)
+       {
+           JOptionPane.showMessageDialog(null, "PLease Select a row");
+           return;
+       }
+       else
+       {
+      
+           Medicine medicine= (Medicine) tblAllMedicines.getValueAt(selectedRow,0);
+           DefaultTableModel model = (DefaultTableModel) tblRequestMedicines.getModel();
+           Object[] row= new Object[1];
+           row[0]=medicine;
+           model.addRow(row);
+           btnRemove.setEnabled(true);
+       }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-       
+       int selectedRow= tblRequestMedicines.getSelectedRow();
+      
+       if(selectedRow<0)
+       {
+           JOptionPane.showMessageDialog(null, "PLease Select a row");
+           return;
+       }
+       else
+       {
+        DefaultTableModel model = (DefaultTableModel) tblRequestMedicines.getModel();
+        model.removeRow(selectedRow);
+       }
+     
+     
 
     }//GEN-LAST:event_btnRemoveActionPerformed
 
-    private void btnRequestMedicinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestMedicinesActionPerformed
-       
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+        MedicineSupplierWorkRequest request = new MedicineSupplierWorkRequest();
+        DefaultTableModel model = (DefaultTableModel) tblRequestMedicines.getModel();
+        int rowCount = model.getRowCount();
+        String medicines = "";
+        for(int i =0; i<rowCount; i++)
+        {
+            medicines = medicines + model.getValueAt(i, 0);
+        }
+        
+        request.setMessage(medicines);
+        request.setSender(userAccount);
+        request.setStatus("Sent");
+        request.setRequestType("Supplier Request");
+        
+        
 
-    }//GEN-LAST:event_btnRequestMedicinesActionPerformed
+        Enterprise ent = null;
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList())
+        {
+            if(enterprise instanceof SupplierEnterprise)
+            {
+                //JOptionPane.showMessageDialog(null, "check");
+                ent = enterprise;
+                Organization org = null;
+                for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof SupplierOrganization){
+                org = organization;
+                if (org!=null)
+                {
+                JOptionPane.showMessageDialog(null, "check");
+                org.getWorkQueue().getWorkRequestList().add(request);
+                break;
+            }
+            
+            }
+            
+           
+        }
+            
+        }
+        }
+            
+        
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-      
-    }//GEN-LAST:event_btnAddActionPerformed
+        userAccount.getWorkQueue().getWorkRequestList().add(request);
+        rightJPanel.remove(this);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

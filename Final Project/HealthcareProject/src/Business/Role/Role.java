@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Role;
+package business.Role;
 
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
+import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
@@ -25,7 +25,9 @@ public abstract class Role {
         RECEPTIONIST("Receptionist"),
         PHARMACIST("Pharmacist"),
         SUPPLIER("Medicine Supplier"),
-        BLOOD_SUPPLIER("Blood Supplier");
+        EQUIPMENT_SUPPLIERS("Equipment Supplier"),
+        BLOOD_SUPPLIER("Blood Supplier")
+        ;
         
         private String value;
         private RoleType(String value){
@@ -46,12 +48,14 @@ public abstract class Role {
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
-            EcoSystem business,
-             Network network);
+            EcoSystem system,
+            Network network);
 
     @Override
     public String toString() {
-        return this.getClass().getName();
+         
+        return this.getClass().getSimpleName();
+          
     }
     
     

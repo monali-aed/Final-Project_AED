@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Inventory;
+package business.Inventory;
 
 import java.util.ArrayList;
 
@@ -12,21 +12,23 @@ import java.util.ArrayList;
  * @author monal
  */
 public class MedicineDirectory {
-      private ArrayList<Medicine> medicineList;
-
-    public MedicineDirectory() 
+    private ArrayList<Medicine> medicineList;
+    
+    public MedicineDirectory()
     {
-        medicineList=new ArrayList<Medicine>();
+      medicineList= new ArrayList<>();
     }
 
-    public ArrayList<Medicine> getMedicineList() 
-    {
+    public ArrayList<Medicine> getMedicineList() {
         return medicineList;
     }
-    public Medicine add()
-    {
-        Medicine medicine=new Medicine();
-        medicineList.add(medicine);
-        return medicine;
+    
+   
+   public Medicine add()
+   {
+     Medicine medicine= new Medicine();
+     medicineList.add(medicine);
+     return medicine;
     }
+    
 }

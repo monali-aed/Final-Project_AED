@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Inventory;
+package business.Inventory;
 
 /**
  *
@@ -28,10 +28,10 @@ public class Blood {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
+    
     @Override
-    public String toString() {
+    public String toString()
+    {
         return type;
     }
-    
 }

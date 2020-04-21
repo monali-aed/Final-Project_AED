@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package business.WorkQueue;
 
 import java.util.ArrayList;
 
@@ -12,8 +12,7 @@ import java.util.ArrayList;
  * @author monal
  */
 public class ScheduleDirectory {
-    
-      private ArrayList<Schedule> scheduleList;
+    private ArrayList<Schedule> scheduleList;
     
     public ScheduleDirectory()
     {
@@ -35,5 +34,4 @@ public class ScheduleDirectory {
     {
         scheduleList.remove(schedule);
     }
-    
 }

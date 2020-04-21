@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Inventory;
+package business.Inventory;
 
 import java.util.ArrayList;
 
@@ -12,19 +12,23 @@ import java.util.ArrayList;
  * @author monal
  */
 public class BloodDirectory {
-     private ArrayList<Blood> bloodDirectory;
-
-    public BloodDirectory() {
-        bloodDirectory = new ArrayList<Blood>();
+    private ArrayList<Blood> bloodDirectory;
+    
+    public BloodDirectory()
+    {
+        bloodDirectory = new ArrayList<>();
     }
 
     public ArrayList<Blood> getBloodDirectory() {
         return bloodDirectory;
     }
-     public Blood addBlood()
-     {
-         Blood blood=new Blood();
-         bloodDirectory.add(blood);
-         return blood;
-     }
+    
+    public Blood addBlood()
+   {
+     Blood blood = new Blood();
+     bloodDirectory.add(blood);
+     return blood;
+   }
+   
+    
 }
