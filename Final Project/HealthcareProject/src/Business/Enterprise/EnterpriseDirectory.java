@@ -39,6 +39,10 @@ public class EnterpriseDirectory {
                 enterprise = new HospitalEnterprise(name);
                 enterpriseList.add(enterprise);
                 break;
+                case EQUIPMENT_SUPPLIERS:
+                enterprise = new EquipmentSupplierEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
        
             case SUPPLIER:
                 enterprise = new SupplierEnterprise(name);
