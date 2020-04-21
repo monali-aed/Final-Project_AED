@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Enterprise;
+package business.Enterprise;
 
-import Business.Role.Role;
+import business.Enterprise.Enterprise.EnterpriseType;
+import business.Role.Role;
 import java.util.ArrayList;
 
 /**
@@ -13,14 +14,14 @@ import java.util.ArrayList;
  * @author monal
  */
 public class SupplierEnterprise extends Enterprise{
-
-    public SupplierEnterprise(String name) {
-        super(name,EnterpriseType.SUPPLIER);
+     
+    public SupplierEnterprise(String name)
+    {
+        super(name, EnterpriseType.SUPPLIER);
     }
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-       return null;
+        return null;
     }
-    
 }

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Patient;
+package business.Patient;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -22,7 +23,8 @@ public class Patient {
     private static int count = 1000;
     private int patientID;
     private String dateAdmitted;
-
+    private ArrayList<VitalSigns> vitalSignHistory;
+    private ArrayList<Comments> commentHistory;
     
     public Patient()
     {
@@ -30,8 +32,10 @@ public class Patient {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         Calendar calender = Calendar.getInstance();
         dateAdmitted = df.format(calender.getTime());
-
+        this.vitalSignHistory = new ArrayList<>();
+        this.commentHistory = new ArrayList<>();
     }
+
     public String getFname() {
         return fname;
     }
@@ -72,35 +76,27 @@ public class Patient {
         this.contact = contact;
     }
 
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        Patient.count = count;
-    }
-
     public int getPatientID() {
         return patientID;
     }
-
-    public void setPatientID(int patientID) {
-        this.patientID = patientID;
+    
+    @Override
+    public String toString()
+    {
+        return fname + " " + lname;
     }
 
     public String getDateAdmitted() {
         return dateAdmitted;
     }
 
-    public void setDateAdmitted(String dateAdmitted) {
-        this.dateAdmitted = dateAdmitted;
+    public ArrayList<VitalSigns> getVitalSignHistory() {
+        return vitalSignHistory;
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" + "fname=" + fname + ", lname=" + lname + '}';
+    public ArrayList<Comments> getCommentHistory() {
+        return commentHistory;
     }
-    
     
     
 }

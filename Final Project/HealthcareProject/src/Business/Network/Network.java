@@ -3,21 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Network;
+package business.Network;
 
-import Business.Enterprise.EnterpriseDirectory;
+import business.Enterprise.EnterpriseDirectory;
 
 /**
  *
  * @author monal
  */
 public class Network {
+    
     private String name;
     private EnterpriseDirectory enterpriseDirectory;
     
-    public Network(){
-        enterpriseDirectory=new EnterpriseDirectory();
+    public Network()
+    {
+        enterpriseDirectory = new EnterpriseDirectory();
     }
+
     public String getName() {
         return name;
     }
@@ -31,8 +34,8 @@ public class Network {
     }
     
     @Override
-    public String toString(){
+    public String toString()
+    {
         return name;
     }
-    
 }

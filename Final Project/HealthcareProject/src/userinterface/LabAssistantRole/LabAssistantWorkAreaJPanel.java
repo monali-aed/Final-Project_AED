@@ -2,14 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.LabAssistantRole;
+package userInterface.LabAssistantRole;
 
-import Business.EcoSystem;
-import Business.Organization.LabOrganization;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.LabTestWorkRequest;
-import Business.WorkQueue.WorkRequest;
+import business.EcoSystem;
+import business.Inventory.Medicine;
+import business.Network.Network;
+import business.Organization.LabOrganization;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.EquipmentSupplierWorkRequest;
+import business.WorkQueue.LabTestWorkRequest;
+import business.WorkQueue.MedicineSupplierWorkRequest;
+import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author sylvester
  */
 public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -25,19 +29,20 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private LabOrganization labOrganization;
-    
+    Network network;
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Network network) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.labOrganization = (LabOrganization)organization;
-        
+        this.network = network;
         populateTable();
+        populateEquipmentRequestTable();
     }
     
     public void populateTable(){
@@ -55,6 +60,28 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    
+    public void populateEquipmentRequestTable()
+    {
+        DefaultTableModel model = (DefaultTableModel)tblEquipmentRequests.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            if(request.getRequestType().contains("Equipment"))
+            {
+            Object[] row = new Object[5];
+            row[0] = request.getRequestDate();
+            row[1] = request.getSender();;
+            row[2] = request;
+            row[3] = request.getReceiver();
+            String result = ((EquipmentSupplierWorkRequest) request).getStatus();
+            row[4] = result == null ? "Waiting" : result;
+            
+            model.addRow(row);
+    }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,22 +92,24 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblEquipmentRequests = new javax.swing.JTable();
+        btnRequest = new javax.swing.JButton();
+        btnAccept = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+        setBackground(new java.awt.Color(0, 153, 204));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel1formComponentShown(evt);
+                formComponentShown(evt);
             }
         });
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,8 +135,14 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1670, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1670, 240));
 
         assignJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         assignJButton.setText("Assign to me");
@@ -116,7 +151,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 assignJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
         processJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         processJButton.setText("Process");
@@ -125,7 +160,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 processJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 160, -1));
 
         refreshJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         refreshJButton.setText("Refresh");
@@ -134,83 +169,146 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 refreshJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 160, -1));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
         jLabel1.setText("Lab Test Requests:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1840, 960));
+        tblEquipmentRequests.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        tblEquipmentRequests.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Request Date", "Sender", "Equipments", "Receiver", "Status"
+            }
+        ));
+        tblEquipmentRequests.setRowHeight(30);
+        jScrollPane2.setViewportView(tblEquipmentRequests);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 1670, 220));
+
+        btnRequest.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnRequest.setText("Request Equipment\\Maintenance");
+        btnRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestActionPerformed(evt);
+            }
+        });
+        add(btnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, -1, -1));
+
+        btnAccept.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 780, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
-        
         int selectedRow = workRequestJTable.getSelectedRow();
-
+        
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row!!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-            if(!request.getStatus().equalsIgnoreCase("Processing") && !request.getStatus().equalsIgnoreCase("Completed"))
-            {
-                request.setReceiver(userAccount);
-                request.setStatus("Pending");
-                populateTable();
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "This request is either processed or completed. Please select other request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        if(!request.getStatus().equalsIgnoreCase("Processing") && !request.getStatus().equalsIgnoreCase("Completed"))
+        {
+        request.setReceiver(userAccount);
+        request.setStatus("Pending");
+        populateTable();
         }
-
+        else
+        {
+         JOptionPane.showMessageDialog(null, "This request is either processed or completed. Please select other request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        }
+        
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-
+        
         int selectedRow = workRequestJTable.getSelectedRow();
-
+        
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row!!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            LabTestWorkRequest request = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-            if(request.getStatus().equalsIgnoreCase("Pending") || request.getStatus().equalsIgnoreCase("Processing") )
-            {
-                request.setStatus("Processing");
-
-                ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request);
-                userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                layout.next(userProcessContainer);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Please select a pending request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+        LabTestWorkRequest request = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        
+        if(request.getStatus().equalsIgnoreCase("Pending") || request.getStatus().equalsIgnoreCase("Processing") )
+        {
+        request.setStatus("Processing");
+        
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
         }
-
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select a pending request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        }
+        
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
-    private void jPanel1formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1formComponentShown
+    private void btnRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestActionPerformed
         // TODO add your handling code here:
-        
+        EquipmentRequest equipmentRequest = new EquipmentRequest(userProcessContainer, userAccount, network);
+        userProcessContainer.add("equipment request", equipmentRequest);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        populateEquipmentRequestTable();
+    }//GEN-LAST:event_btnRequestActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        populateEquipmentRequestTable();
         populateTable();
-    }//GEN-LAST:event_jPanel1formComponentShown
+    }//GEN-LAST:event_formComponentShown
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblEquipmentRequests.getSelectedRow();
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+        EquipmentSupplierWorkRequest request = (EquipmentSupplierWorkRequest)tblEquipmentRequests.getValueAt(selectedRow, 2);
+        if(request.getStatus().equalsIgnoreCase("Processed"))
+        {
+        request.setStatus("Completed");
+        populateEquipmentRequestTable();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry this request is not processed yet!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        }
+    
+    }//GEN-LAST:event_btnAcceptActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnRequest;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;
+    private javax.swing.JTable tblEquipmentRequests;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

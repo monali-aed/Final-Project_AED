@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Enterprise;
+package business.Enterprise;
 
-import Business.Organization.OrganizationDirectory;
+import business.Enterprise.Enterprise.EnterpriseType;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * @author monal
  */
 public class EnterpriseDirectory {
+    
     private ArrayList<Enterprise> enterpriseList;
-   
 
     public ArrayList<Enterprise> getEnterpriseList() {
         return enterpriseList;
@@ -24,23 +24,25 @@ public class EnterpriseDirectory {
         this.enterpriseList = enterpriseList;
     }
     
-    public EnterpriseDirectory(){
-        enterpriseList=new ArrayList<Enterprise>();
+    public EnterpriseDirectory()
+    {
+        enterpriseList = new ArrayList();
     }
     
-    //Create enterprise
-    public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type)
+    public Enterprise createAndAddEnterprise(String name, EnterpriseType type)
+    //Create Enterprise
     {
-        {
        Enterprise enterprise = null;
-        if(null != type)
+       if(null != type)
         switch (type) {
             case HOSPITAL:
                 enterprise = new HospitalEnterprise(name);
                 enterpriseList.add(enterprise);
                 break;
-                
-       
+            case EQUIPMENT_SUPPLIERS:
+                enterprise = new EquipmentSupplierEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
             case SUPPLIER:
                 enterprise = new SupplierEnterprise(name);
                 enterpriseList.add(enterprise);
@@ -49,10 +51,10 @@ public class EnterpriseDirectory {
                 enterprise = new BloodBankEnterprise(name);
                 enterpriseList.add(enterprise);
                 break;
-            default: 
+            default:
                 break;
         }
-        return enterprise;
+       return enterprise;
     }
-}
+
 }

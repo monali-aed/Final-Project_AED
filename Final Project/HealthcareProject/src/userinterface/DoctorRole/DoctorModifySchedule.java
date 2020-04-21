@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.DoctorRole;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.Schedule;
+package userInterface.DoctorRole;
+
+import business.UserAccount.UserAccount;
+import business.WorkQueue.Schedule;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
@@ -16,14 +17,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 /**
  *
- * @author sylvesternoronha
+ * @author maalp
  */
-public class DoctorModifySchedule extends javax.swing.JFrame {
+public class DoctorModifySchedule extends javax.swing.JPanel {
 
     /**
-     * Creates new form DoctorModifySchedule
+     * Creates new form DoctorUpdateSchedule
      */
     JPanel container;
     UserAccount useraccount;
@@ -37,7 +39,6 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
         btnSaveSchedule.setEnabled(false);
         btnModifySchedule.setEnabled(true);
     }
-    
     
     private void populateSchedule()
     {
@@ -57,24 +58,23 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        banner = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         dateLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
-        hoursLabel = new javax.swing.JLabel();
-        locationLabel = new javax.swing.JLabel();
-        txtDate = new com.toedter.calendar.JDateChooser();
         txtTime = new javax.swing.JTextField();
+        hoursLabel = new javax.swing.JLabel();
         txtHours = new javax.swing.JTextField();
+        locationLabel = new javax.swing.JLabel();
         txtLocation = new javax.swing.JTextField();
         btnSaveSchedule = new javax.swing.JButton();
         btnModifySchedule = new javax.swing.JButton();
+        banner = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        txtDate = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        banner.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
-        banner.setText("Modify Schedule");
+        setBackground(new java.awt.Color(0, 153, 204));
 
         dateLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -84,14 +84,6 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
         timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         timeLabel.setText("Time:");
 
-        hoursLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        hoursLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        hoursLabel.setText("Hours:");
-
-        locationLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        locationLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        locationLabel.setText("Location:");
-
         txtTime.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtTime.setEnabled(false);
         txtTime.addActionListener(new java.awt.event.ActionListener() {
@@ -100,8 +92,16 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
             }
         });
 
+        hoursLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        hoursLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        hoursLabel.setText("Hours:");
+
         txtHours.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtHours.setEnabled(false);
+
+        locationLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        locationLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        locationLabel.setText("Location:");
 
         txtLocation.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtLocation.setEnabled(false);
@@ -122,140 +122,73 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
             }
         });
 
+        banner.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        banner.setText("Modify Schedule");
+
         btnBack.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnBack.setText("Back");
+        btnBack.setText("<<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(hoursLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
-                        .addComponent(locationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(banner)
-                                .addGap(20, 20, 20))
-                            .addComponent(dateLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                    .addComponent(txtTime)
-                    .addComponent(txtHours)
-                    .addComponent(txtLocation))
-                .addGap(471, 471, 471))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(btnSaveSchedule)
-                        .addGap(254, 254, 254)
-                        .addComponent(btnModifySchedule))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(btnBack)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(banner)
-                .addGap(139, 139, 139)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateLabel))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeLabel)
-                    .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hoursLabel)
-                    .addComponent(txtHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(locationLabel)
-                    .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModifySchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSaveSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(171, 171, 171)
-                .addComponent(btnBack)
-                .addGap(166, 166, 166))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(timeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(locationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(hoursLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtTime)
+                                .addComponent(txtHours)
+                                .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnModifySchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSaveSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(banner))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(597, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(banner)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateLabel)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timeLabel)
+                    .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hoursLabel)
+                    .addComponent(txtHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(locationLabel)
+                    .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(btnSaveSchedule)
+                .addGap(18, 18, 18)
+                .addComponent(btnModifySchedule)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addComponent(btnBack)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTimeActionPerformed
-
-    private void btnSaveScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveScheduleActionPerformed
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
-        Date date = new Date();
-        Date localDate;
-        if(!(txtDate.getDate().toString().isEmpty()))
-        {localDate=txtDate.getDate();
-
-            if(localDate.compareTo(date) ==-1)
-            JOptionPane.showMessageDialog(null, "PLEASE CHOOSE FUTURE DATES!","INFORMATION",JOptionPane.INFORMATION_MESSAGE);
-            else if(!txtHours.getText().matches("[1-9]"))
-            JOptionPane.showMessageDialog(null, "PLEASE ENTTER HOURS BETWEEN 1 TO 9","WARNING",JOptionPane.WARNING_MESSAGE);
-            else if(!txtLocation.getText().matches("[[A-Za-z]*[0-9]*[A-Za-z]]*"))
-            JOptionPane.showMessageDialog(null, "PLEASE ENTTER AALPHABETS AND DIGITS ONLY","WARNING",JOptionPane.WARNING_MESSAGE);
-            else if(!(txtTime.getText().equals("9") || txtTime.getText().equals("10") || txtTime.getText().equals("11") || txtTime.getText().equals("12") || txtTime.getText().equals("1") || txtTime.getText().equals("2") || txtTime.getText().equals("3") || txtTime.getText().equals("4") || txtTime.getText().equals("5")))
-            JOptionPane.showMessageDialog(null, "PLEASE ENTTER Valid time","WARNING",JOptionPane.WARNING_MESSAGE);
-            else if(txtHours.getText().isEmpty() || txtLocation.getText().isEmpty() || txtTime.getText().isEmpty())
-            JOptionPane.showMessageDialog(null, "PLEASE ENTTER Values in  all fields","WARNING",JOptionPane.WARNING_MESSAGE);
-            else{
-                schedule.setAvailHours((int) Float.parseFloat((txtHours.getText())));
-                schedule.setDate(txtDate.getDate());
-                schedule.setLocation(txtLocation.getText());
-                schedule.setTime(txtTime.getText());
-                btnModifySchedule.setEnabled(true);
-                btnSaveSchedule.setEnabled(false);
-                txtDate.setEnabled(false);
-                txtHours.setEnabled(false);
-                txtLocation.setEnabled(false);
-                txtTime.setEnabled(false);
-                JOptionPane.showMessageDialog(null, "Schedule Updated","Success",JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-        else
-        JOptionPane.showMessageDialog(null, "PLEASE CHOOSE a DATE","WARNING",JOptionPane.WARNING_MESSAGE);
-
-    }//GEN-LAST:event_btnSaveScheduleActionPerformed
 
     private void btnModifyScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyScheduleActionPerformed
         // TODO add your handling code here:
@@ -267,18 +200,54 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
         btnSaveSchedule.setEnabled(true);
     }//GEN-LAST:event_btnModifyScheduleActionPerformed
 
+    private void btnSaveScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveScheduleActionPerformed
+           DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        Date date = new Date();
+        Date localDate;
+        if(!(txtDate.getDate().toString().isEmpty()))
+        {localDate=txtDate.getDate();
+        
+        if(localDate.compareTo(date) ==-1)
+            JOptionPane.showMessageDialog(null, "PLEASE CHOOSE FUTURE DATES!","INFORMATION",JOptionPane.INFORMATION_MESSAGE);
+        else if(!txtHours.getText().matches("[1-9]"))
+            JOptionPane.showMessageDialog(null, "PLEASE ENTTER HOURS BETWEEN 1 TO 9","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(!txtLocation.getText().matches("[[A-Za-z]*[0-9]*[A-Za-z]]*"))
+            JOptionPane.showMessageDialog(null, "PLEASE ENTTER AALPHABETS AND DIGITS ONLY","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(!(txtTime.getText().equals("9") || txtTime.getText().equals("10") || txtTime.getText().equals("11") || txtTime.getText().equals("12") || txtTime.getText().equals("1") || txtTime.getText().equals("2") || txtTime.getText().equals("3") || txtTime.getText().equals("4") || txtTime.getText().equals("5"))) 
+            JOptionPane.showMessageDialog(null, "PLEASE ENTTER Valid time","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(txtHours.getText().isEmpty() || txtLocation.getText().isEmpty() || txtTime.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "PLEASE ENTTER Values in  all fields","WARNING",JOptionPane.WARNING_MESSAGE);
+        else{
+        schedule.setAvailHours((int) Float.parseFloat((txtHours.getText())));
+        schedule.setDate(txtDate.getDate());
+        schedule.setLocation(txtLocation.getText());
+        schedule.setTime(txtTime.getText());
+        btnModifySchedule.setEnabled(true);
+        btnSaveSchedule.setEnabled(false);
+        txtDate.setEnabled(false);
+        txtHours.setEnabled(false);
+        txtLocation.setEnabled(false);
+        txtTime.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Schedule Updated","Success",JOptionPane.INFORMATION_MESSAGE);
+        }
+        }
+        else 
+            JOptionPane.showMessageDialog(null, "PLEASE CHOOSE a DATE","WARNING",JOptionPane.WARNING_MESSAGE);
+        
+    }//GEN-LAST:event_btnSaveScheduleActionPerformed
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         container.remove(this);
         CardLayout layout = (CardLayout)container.getLayout();
         layout.previous(container);
-
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+    private void txtTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel banner;
@@ -287,7 +256,7 @@ public class DoctorModifySchedule extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveSchedule;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel hoursLabel;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JLabel timeLabel;
     private com.toedter.calendar.JDateChooser txtDate;

@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package business.WorkQueue;
 
 /**
  *
  * @author monal
  */
-public class MedicineWorkRequest {
+public class MedicineWorkRequest extends WorkRequest {
+    
     private String comments;
 
     public String getComments() {
@@ -19,4 +20,5 @@ public class MedicineWorkRequest {
     public void setComments(String comments) {
         this.comments = comments;
     }
+    
 }

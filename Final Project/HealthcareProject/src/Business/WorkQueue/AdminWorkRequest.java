@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package business.WorkQueue;
 
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
 
 /**
  *
  * @author monal
  */
-public class AdminWorkRequest {
+public class AdminWorkRequest extends WorkRequest {
     private String name;
     private String email;
     private String contact;
@@ -76,5 +76,6 @@ public class AdminWorkRequest {
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
     }
+    
     
 }
