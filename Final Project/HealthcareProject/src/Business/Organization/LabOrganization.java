@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Organization;
+package business.Organization;
 
-import Business.Role.LabAssistantRole;
-import Business.Role.Role;
+import business.Role.LabAssistantRole;
+import business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public class LabOrganization extends Organization{
 
@@ -24,11 +24,13 @@ public class LabOrganization extends Organization{
         roles.add(new LabAssistantRole());
         return roles;
     }
-     
-   
-      @Override
+
+    @Override
     public String getType() {
     return "Lab Organization";
     }
+     
+   
+    
     
 }

@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package business.WorkQueue;
 
 /**
  *
  * @author monal
  */
-public class MedicineSupplierWorkRequest {
+public class MedicineSupplierWorkRequest extends WorkRequest{
     
     private String comments;
 
@@ -20,4 +19,8 @@ public class MedicineSupplierWorkRequest {
     public void setComments(String comments) {
         this.comments = comments;
     }
+
+
+    
+    
 }

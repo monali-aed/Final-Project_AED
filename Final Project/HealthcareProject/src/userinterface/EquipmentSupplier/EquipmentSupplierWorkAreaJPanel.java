@@ -3,19 +3,61 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.EquipmentSupplier;
+package userInterface.EquipmentSupplier;
+
+import business.EcoSystem;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import business.Organization.EquipmentSupplierOrganization;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.EquipmentSupplierWorkRequest;
+import business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author monal
+ * @author sylvester
  */
 public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form EquipmentSupplierWorkAreaJPanel
      */
-    public EquipmentSupplierWorkAreaJPanel() {
+    private JPanel container;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    Enterprise enterprise;
+    Network network;
+    private EquipmentSupplierOrganization equipmentSupplierOrganization;
+    public EquipmentSupplierWorkAreaJPanel(JPanel container, UserAccount userAccount, Organization organization, Enterprise enterprise,Network network) {
         initComponents();
+        this.container=container;
+        this.userAccount = userAccount;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.business = business;
+        this.equipmentSupplierOrganization = (EquipmentSupplierOrganization)organization;
+        populateTable();
+        
+    }
+
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel)tblEquipmentRequests.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : equipmentSupplierOrganization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            row[0] = request;
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -27,30 +69,18 @@ public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEquipmentRequests = new javax.swing.JTable();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblEquipmentRequests = new javax.swing.JTable();
 
-        assignJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        assignJButton.setText("Assign to me");
-        assignJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignJButtonActionPerformed(evt);
+        setBackground(new java.awt.Color(0, 153, 204));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
             }
         });
-
-        processJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        processJButton.setText("Process");
-        processJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                processJButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        jLabel1.setText("Equipment Supplier Work Area:");
 
         tblEquipmentRequests.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         tblEquipmentRequests.setModel(new javax.swing.table.DefaultTableModel(
@@ -79,6 +109,25 @@ public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
         tblEquipmentRequests.setRowHeight(30);
         jScrollPane1.setViewportView(tblEquipmentRequests);
 
+        assignJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        assignJButton.setText("Assign to me");
+        assignJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignJButtonActionPerformed(evt);
+            }
+        });
+
+        processJButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        processJButton.setText("Process");
+        processJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processJButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        jLabel1.setText("Equipment Supplier Work Area:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,10 +140,11 @@ public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(assignJButton)
-                                .addGap(36, 36, 36)
-                                .addComponent(processJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 215, Short.MAX_VALUE)))
+                                .addGap(403, 403, 403)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(assignJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(processJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 362, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,23 +155,60 @@ public class EquipmentSupplierWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignJButton)
-                    .addComponent(processJButton))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addComponent(assignJButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(processJButton)
+                .addContainerGap(141, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
-       
+        int selectedRow = tblEquipmentRequests.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row.");
+        }
+
+        WorkRequest request = (WorkRequest)tblEquipmentRequests.getValueAt(selectedRow, 0);
+        if(!request.getStatus().equalsIgnoreCase("Processing") && !request.getStatus().equalsIgnoreCase("Completed"))
+        {
+        request.setReceiver(userAccount);
+        request.setStatus("Pending");
+        populateTable();
+        }
+        else
+        {
+         JOptionPane.showMessageDialog(null, "This request is either processed or completed. Please select other request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
 
-       
-        
+        int selectedRow = tblEquipmentRequests.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please Select a Row.");
+        }
+
+        EquipmentSupplierWorkRequest request = (EquipmentSupplierWorkRequest)tblEquipmentRequests.getValueAt(selectedRow, 0);
+        if(request.getStatus().equalsIgnoreCase("Pending") || request.getStatus().equalsIgnoreCase("Processing") )
+        {
+        request.setStatus("Processed");
+        populateTable();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select a pending request!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_processJButtonActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

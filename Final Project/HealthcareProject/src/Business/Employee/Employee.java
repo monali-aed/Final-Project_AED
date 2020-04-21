@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Employee;
+package business.Employee;
 
 /**
  *
@@ -12,7 +12,6 @@ public class Employee {
     
     private String name;
     private int id;
-    
 
     public int getId() {
         return id;
@@ -21,8 +20,8 @@ public class Employee {
     public void setId(int id) {
         this.id = id;
     }
-    
 
+    
     public void setName(String name) {
         this.name = name;
     }

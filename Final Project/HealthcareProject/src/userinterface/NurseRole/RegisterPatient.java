@@ -3,23 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NurseRole;
+package userInterface.NurseRole;
 
+import business.Organization.Organization;
+import business.Patient.Patient;
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author monal
+ * @author maalp
  */
 public class RegisterPatient extends javax.swing.JPanel {
 
     /**
      * Creates new form RegisterPatient
      */
+    Organization organization;
     JPanel container;
-    public RegisterPatient() {
+    public RegisterPatient(JPanel container, Organization organization) {
         initComponents();
+        this.container = container;
+        this.organization = organization;
     }
 
     /**
@@ -31,11 +38,10 @@ public class RegisterPatient extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRegister = new javax.swing.JButton();
+        btnGrpSex = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtContact = new javax.swing.JFormattedTextField();
         txtFirstName = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         txtLastName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         radioBtnMale = new javax.swing.JRadioButton();
@@ -44,25 +50,18 @@ public class RegisterPatient extends javax.swing.JPanel {
         txtAge = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        btnRegister = new javax.swing.JButton();
+        txtContact = new javax.swing.JFormattedTextField();
+        btnBack = new javax.swing.JButton();
 
-        btnRegister.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnRegister.setText("Register");
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        jLabel1.setText("Patient Registration");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Name:");
-
-        try {
-            txtContact.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         txtFirstName.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtFirstName.addActionListener(new java.awt.event.ActionListener() {
@@ -73,14 +72,6 @@ public class RegisterPatient extends javax.swing.JPanel {
         txtFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFirstNameKeyTyped(evt);
-            }
-        });
-
-        btnBack.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnBack.setText("<<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
             }
         });
 
@@ -101,6 +92,7 @@ public class RegisterPatient extends javax.swing.JPanel {
         jLabel3.setText("Sex:");
 
         radioBtnMale.setBackground(new java.awt.Color(104, 120, 128));
+        btnGrpSex.add(radioBtnMale);
         radioBtnMale.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         radioBtnMale.setSelected(true);
         radioBtnMale.setText("Male");
@@ -111,6 +103,7 @@ public class RegisterPatient extends javax.swing.JPanel {
         });
 
         radioBtnFemale.setBackground(new java.awt.Color(104, 120, 128));
+        btnGrpSex.add(radioBtnFemale);
         radioBtnFemale.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         radioBtnFemale.setText("Female");
 
@@ -132,8 +125,27 @@ public class RegisterPatient extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Emergency Contact:");
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        jLabel1.setText("Patient Registration");
+        btnRegister.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        try {
+            txtContact.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        btnBack.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,14 +157,11 @@ public class RegisterPatient extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addContainerGap(248, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(jLabel6))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -174,15 +183,19 @@ public class RegisterPatient extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRegister)
-                                    .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(339, Short.MAX_VALUE))
+                                    .addComponent(txtContact))))))
+                .addContainerGap(249, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,26 +214,63 @@ public class RegisterPatient extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(46, 46, 46)
+                .addGap(26, 26, 26)
                 .addComponent(btnRegister)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
+
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-       
+        if(txtFirstName.getText().trim().isEmpty() || txtLastName.getText().trim().isEmpty() || txtAge.getText().trim().isEmpty() || txtContact.getText().trim().isEmpty())
+            JOptionPane.showMessageDialog(null, "PLEASE ENTER VALUES FOR ALL FILEDS","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(!txtFirstName.getText().trim().matches("[A-Za-z]*"))
+            JOptionPane.showMessageDialog(null, "PLEASE ENTER CORRCT FIRSTNAME","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(!txtLastName.getText().trim().matches("[A-Za-z]*"))
+            JOptionPane.showMessageDialog(null, "PLEASE ENTER CORRCT LASTNAME","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(txtContact.getText().equals("   -   -    "))
+             JOptionPane.showMessageDialog(null, "PLEASE ENTER  CONTACT","WARNING",JOptionPane.WARNING_MESSAGE);
+        else if(Integer.parseInt(txtAge.getText().trim())<0 || Integer.parseInt(txtAge.getText().trim())>99)
+             JOptionPane.showMessageDialog(null, "PLEASE ENTER  PROPER AGE","WARNING",JOptionPane.WARNING_MESSAGE);
+        else{
+           
+        Patient patient = new Patient();
+        patient.setAge(Integer.parseInt(txtAge.getText()));
+        patient.setContact(txtContact.getText());
+        patient.setFname(txtFirstName.getText());
+        patient.setLname(txtLastName.getText());
+        if(radioBtnMale.isSelected())
+        {
+            patient.setSex("Male");
+        }
+        else
+        {
+            patient.setSex("Female");
+        }
+        txtAge.setText("");
+        txtContact.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        
+        organization.getPatientDirectory().getPatientList().add(patient);
+        JOptionPane.showMessageDialog(null, "Patient Registered","Success",JOptionPane.INFORMATION_MESSAGE);
+                
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void radioBtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioBtnMaleActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFirstNameActionPerformed
-
-    private void txtFirstNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyTyped
-         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFirstNameKeyTyped
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -229,25 +279,40 @@ public class RegisterPatient extends javax.swing.JPanel {
         layout.previous(container);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLastNameActionPerformed
+    private void txtFirstNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyTyped
+    char ch = evt.getKeyChar();
+       if(!(Character.isAlphabetic(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isDigit(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter alphabetical values only.");
+       }    // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameKeyTyped
 
     private void txtLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyTyped
-       // TODO add your handling code here:
+    char ch = evt.getKeyChar();
+       if(!(Character.isAlphabetic(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isDigit(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter alphabetical values only.");
+       }    // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameKeyTyped
 
-    private void radioBtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnMaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioBtnMaleActionPerformed
-
     private void txtAgeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyTyped
-           // TODO add your handling code here:
+    char ch = evt.getKeyChar();
+       if(!(Character.isDigit(ch)) || (ch == KeyEvent.VK_BACK_SPACE) || (ch == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+           if(Character.isAlphabetic(ch) || Character.isSpaceChar(ch))
+           JOptionPane.showMessageDialog(null,"Enter numerical values only.");
+       }    // TODO add your handling code here:
     }//GEN-LAST:event_txtAgeKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.ButtonGroup btnGrpSex;
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

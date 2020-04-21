@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package business.WorkQueue;
 
 /**
  *
  * @author monal
  */
-public class BloodRequest {
+public class BloodRequest extends WorkRequest {
+    
     private String approval;
 
     public String getApproval() {
@@ -19,4 +20,7 @@ public class BloodRequest {
     public void setApproval(String approval) {
         this.approval = approval;
     }
+    
+    
+    
 }

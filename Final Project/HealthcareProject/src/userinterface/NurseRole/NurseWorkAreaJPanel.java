@@ -3,26 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NurseRole;
+package userInterface.NurseRole;
 
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.NurseOrganization;
-import Business.Patient.Patient;
-import Business.UserAccount.UserAccount;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import business.Organization.NurseOrganization;
+import business.Patient.Patient;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.BloodRequest;
+import business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author monal
+ * @author maalp
  */
 public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form NurseWorkAreaJPanel
      */
-     JPanel container;
+    JPanel container;
     NurseOrganization nurseOrganization;
     UserAccount userAccount;
     Enterprise enterprise;
@@ -36,8 +40,40 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         this.network = network;
         refreshTable();
         populateBloodRequestTable();
+        
     }
     
+    public void refreshTable()
+    {
+        DefaultTableModel dtm = (DefaultTableModel) tblPatient.getModel();
+        dtm.setRowCount(0);
+        for(Patient patient : nurseOrganization.getPatientDirectory().getPatientList()){
+           Object[] row = new Object[3];
+           row[0] = patient.getPatientID();
+           row[1] = patient;
+           row[2] = patient.getDateAdmitted();
+            
+           dtm.addRow(row);
+    }
+    }
+    
+    private void populateBloodRequestTable()
+    {
+        DefaultTableModel model = (DefaultTableModel)tblBloodRequest.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : nurseOrganization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getRequestDate();
+            row[1] = request.getPatientName();
+            row[2] = request;
+            row[3] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[4] = request.getStatus();
+            
+            model.addRow(row);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +84,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rightPanel = new javax.swing.JPanel();
+        SplitPane = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
         btnRegisterPatient = new javax.swing.JButton();
         btnRecordVitalSigns = new javax.swing.JButton();
@@ -56,6 +92,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         btnPatientHistory = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
         btnBloodBank = new javax.swing.JButton();
+        rightPanel = new javax.swing.JPanel();
         nurseContainer = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPatient = new javax.swing.JTable();
@@ -64,7 +101,11 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         btnAccept = new javax.swing.JButton();
         lblBanner = new javax.swing.JLabel();
 
-        rightPanel.setLayout(new java.awt.CardLayout());
+        setLayout(new java.awt.BorderLayout());
+
+        SplitPane.setDividerLocation(250);
+
+        leftPanel.setBackground(new java.awt.Color(0, 153, 204));
 
         btnRegisterPatient.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnRegisterPatient.setText("Register Patient");
@@ -150,6 +191,11 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(396, Short.MAX_VALUE))
         );
 
+        SplitPane.setLeftComponent(leftPanel);
+
+        rightPanel.setLayout(new java.awt.CardLayout());
+
+        nurseContainer.setBackground(new java.awt.Color(0, 153, 204));
         nurseContainer.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 nurseContainerComponentShown(evt);
@@ -195,6 +241,13 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         });
         tblBloodRequest.setRowHeight(30);
         jScrollPane2.setViewportView(tblBloodRequest);
+        if (tblBloodRequest.getColumnModel().getColumnCount() > 0) {
+            tblBloodRequest.getColumnModel().getColumn(0).setResizable(false);
+            tblBloodRequest.getColumnModel().getColumn(1).setResizable(false);
+            tblBloodRequest.getColumnModel().getColumn(2).setResizable(false);
+            tblBloodRequest.getColumnModel().getColumn(3).setResizable(false);
+            tblBloodRequest.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         btnAccept.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnAccept.setText("Accept");
@@ -221,7 +274,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(nurseContainerLayout.createSequentialGroup()
                         .addComponent(lblBanner)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -233,81 +286,150 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAccept)
                 .addGap(191, 191, 191))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nurseContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nurseContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        rightPanel.add(nurseContainer, "card2");
+
+        SplitPane.setRightComponent(rightPanel);
+
+        add(SplitPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
-        // TODO add your handling code here:
-     
-    }//GEN-LAST:event_btnAcceptActionPerformed
-
-    private void nurseContainerComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_nurseContainerComponentShown
-    
-    }//GEN-LAST:event_nurseContainerComponentShown
 
     private void btnRegisterPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterPatientActionPerformed
         // TODO add your handling code here:
-       
-
+        RegisterPatient panel = new RegisterPatient(rightPanel, nurseOrganization);
+        rightPanel.add("Register New Patient",panel);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.next(rightPanel);
+        btnRegisterPatient.setEnabled(false);
+        btnBloodBank.setEnabled(false);
+        btnDischargePatient.setEnabled(false);
+        btnRecordVitalSigns.setEnabled(false);
+        btnPatientHistory.setEnabled(false);
+        
     }//GEN-LAST:event_btnRegisterPatientActionPerformed
 
     private void btnRecordVitalSignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecordVitalSignsActionPerformed
         // TODO add your handling code here:
-       
-        
+        int selectedRow = tblPatient.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null,"Please Select a Row from table first","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            btnRegisterPatient.setEnabled(false);
+            btnBloodBank.setEnabled(false);
+            btnDischargePatient.setEnabled(false);
+            btnRecordVitalSigns.setEnabled(false);
+            btnPatientHistory.setEnabled(false);
+            Patient patient  =  (Patient) tblPatient.getValueAt(selectedRow,1);
+            RecordVitalSigns recordVitalSigns = new RecordVitalSigns(rightPanel, patient);
+            rightPanel.add("RecordvitalSigns", recordVitalSigns);
+            CardLayout layout = (CardLayout) rightPanel.getLayout();
+            layout.next(rightPanel);
+        }
     }//GEN-LAST:event_btnRecordVitalSignsActionPerformed
 
     private void btnDischargePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDischargePatientActionPerformed
         // TODO add your handling code here:
-       
+        int selectedRow = tblPatient.getSelectedRow();
+        if(selectedRow >= 0){
+            int dialogResult = JOptionPane.showConfirmDialog(null,"Is the patient's disease treated successfully and want to discharge?","Warning",JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                Patient patient= (Patient) tblPatient.getValueAt(selectedRow,1);
+                DefaultTableModel dtm=(DefaultTableModel) tblPatient.getModel();
+                dtm.removeRow(selectedRow);
+                refreshTable();
+            }
+        }
+          else
+            JOptionPane.showMessageDialog(null, "PLEASE SELECT A ROW","WARNING",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnDischargePatientActionPerformed
 
     private void btnPatientHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientHistoryActionPerformed
         // TODO add your handling code here:
-       
+        int selectedRow = tblPatient.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null,"Please Select a Row from table first","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+             btnRegisterPatient.setEnabled(false);
+             btnBloodBank.setEnabled(false);
+             btnDischargePatient.setEnabled(false);
+             btnRecordVitalSigns.setEnabled(false);
+             btnPatientHistory.setEnabled(false);
+             Patient patient  = (Patient) tblPatient.getValueAt(selectedRow,1);
+             PatientHistory patientHistory = new PatientHistory(rightPanel, patient);
+             rightPanel.add("Patient History", patientHistory);
+             CardLayout layout = (CardLayout) rightPanel.getLayout();
+             layout.next(rightPanel);
+        }
     }//GEN-LAST:event_btnPatientHistoryActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        rightPanel.removeAll();
+        rightPanel.add(nurseContainer);
+        refreshTable();
+        populateBloodRequestTable();
+        btnRegisterPatient.setEnabled(true);
+        btnBloodBank.setEnabled(true);
+        btnDischargePatient.setEnabled(true);
+        btnRecordVitalSigns.setEnabled(true);
+        btnPatientHistory.setEnabled(true);
        
 
     }//GEN-LAST:event_btnHomeActionPerformed
 
+    private void nurseContainerComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_nurseContainerComponentShown
+        refreshTable();
+        populateBloodRequestTable();
+        btnRegisterPatient.setEnabled(true);
+        btnBloodBank.setEnabled(true);
+        btnDischargePatient.setEnabled(true);
+        btnRecordVitalSigns.setEnabled(true);
+        btnPatientHistory.setEnabled(true);
+    }//GEN-LAST:event_nurseContainerComponentShown
+
     private void btnBloodBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBloodBankActionPerformed
         // TODO add your handling code here:
-       
+        btnRegisterPatient.setEnabled(false);
+        btnBloodBank.setEnabled(false);
+        btnDischargePatient.setEnabled(false);
+        btnRecordVitalSigns.setEnabled(false);
+        btnPatientHistory.setEnabled(false);
+        ViewBloodBank viewBloodBank = new ViewBloodBank(rightPanel, nurseOrganization, network, userAccount);
+            rightPanel.add("Blood Bank", viewBloodBank);
+            CardLayout layout = (CardLayout) rightPanel.getLayout();
+            layout.next(rightPanel);
     }//GEN-LAST:event_btnBloodBankActionPerformed
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblBloodRequest.getSelectedRow();
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+        BloodRequest request = (BloodRequest)tblBloodRequest.getValueAt(selectedRow, 2);
+        if(request.getStatus().equalsIgnoreCase("Processed"))
+        {
+        request.setStatus("Completed");
+        populateBloodRequestTable();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry this request is not processed yet!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        }
+    }//GEN-LAST:event_btnAcceptActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSplitPane SplitPane;
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnBloodBank;
     private javax.swing.JButton btnDischargePatient;

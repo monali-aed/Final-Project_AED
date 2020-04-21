@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.DoctorRole;
+package userInterface.DoctorRole;
 
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.DoctorOrganization;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.LabTestWorkRequest;
-import Business.WorkQueue.MedicineWorkRequest;
-import Business.WorkQueue.Schedule;
-import Business.WorkQueue.ScheduleDirectory;
-import Business.WorkQueue.WorkRequest;
+import business.Enterprise.Enterprise;
+import business.Network.Network;
+import business.Organization.DoctorOrganization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.LabTestWorkRequest;
+import business.WorkQueue.MedicineWorkRequest;
+import business.WorkQueue.Schedule;
+import business.WorkQueue.ScheduleDirectory;
+import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author monal
+ * @author sylvester
  */
 public class DoctorContainer extends javax.swing.JPanel {
 
@@ -33,16 +33,14 @@ public class DoctorContainer extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private ScheduleDirectory scheduleDirectory;
-    private EcoSystem business;
     Network network;
-    public DoctorContainer(JPanel container, UserAccount userAccount, DoctorOrganization organization, Enterprise enterprise,EcoSystem business, Network network) {
+    public DoctorContainer(JPanel container, UserAccount userAccount, DoctorOrganization organization, Enterprise enterprise, Network network) {
         initComponents();
         this.container=container;
         this.userAccount = userAccount;
         this.organization=organization;
         this.enterprise=enterprise;
         this.network = network;
-        this.business=business;
         scheduleDirectory= userAccount.getScheduleDirectory();
         populateScheduleTable();
         populateLabRequestTable();
@@ -64,8 +62,8 @@ public class DoctorContainer extends javax.swing.JPanel {
             model.addRow(row);
     }
     }
-    
-    private void populateLabRequestTable(){
+        
+        private void populateLabRequestTable(){
         DefaultTableModel model = (DefaultTableModel) tblLabRequests.getModel();
         
         model.setRowCount(0);
@@ -83,8 +81,8 @@ public class DoctorContainer extends javax.swing.JPanel {
         }
             }
     }
-    
-    private void populateMedicineRequestTable(){
+        
+        private void populateMedicineRequestTable(){
         DefaultTableModel model = (DefaultTableModel) tblMedicineRequests.getModel();
         
         model.setRowCount(0);
@@ -101,6 +99,7 @@ public class DoctorContainer extends javax.swing.JPanel {
         }
         }
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,6 +110,8 @@ public class DoctorContainer extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        splitPaneDoctor = new javax.swing.JSplitPane();
         DoctorContainerLeftPanel = new javax.swing.JPanel();
         btnCreateSchedule = new javax.swing.JButton();
         btnModifySchedule = new javax.swing.JButton();
@@ -118,21 +119,26 @@ public class DoctorContainer extends javax.swing.JPanel {
         btnRequestLabTest = new javax.swing.JButton();
         btnRequestMedicine = new javax.swing.JButton();
         btnViewReports = new javax.swing.JButton();
+        DoctorContainerRightJPanel = new javax.swing.JPanel();
         doctorContainer = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDoctorSchedule = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLabRequests = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblMedicineRequests = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(240, 240, 240));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setText("Test Request:");
 
-        DoctorContainerLeftPanel.setBackground(new java.awt.Color(240, 240, 240));
+        splitPaneDoctor.setDividerLocation(350);
+        splitPaneDoctor.setDividerSize(1);
+
+        DoctorContainerLeftPanel.setBackground(new java.awt.Color(0, 153, 204));
 
         btnCreateSchedule.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnCreateSchedule.setText("Create Schedule");
@@ -187,20 +193,24 @@ public class DoctorContainer extends javax.swing.JPanel {
         DoctorContainerLeftPanelLayout.setHorizontalGroup(
             DoctorContainerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DoctorContainerLeftPanelLayout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
-                .addGroup(DoctorContainerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnRequestLabTest, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnViewReports, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRequestMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnModifySchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCreateSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGroup(DoctorContainerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(DoctorContainerLeftPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnViewReports, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DoctorContainerLeftPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(DoctorContainerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreateSchedule, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnModifySchedule, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRequestLabTest, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRequestMedicine, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         DoctorContainerLeftPanelLayout.setVerticalGroup(
             DoctorContainerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DoctorContainerLeftPanelLayout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(133, 133, 133)
                 .addComponent(btnCreateSchedule)
                 .addGap(18, 18, 18)
                 .addComponent(btnModifySchedule)
@@ -210,18 +220,21 @@ public class DoctorContainer extends javax.swing.JPanel {
                 .addComponent(btnCancel)
                 .addGap(18, 18, 18)
                 .addComponent(btnRequestLabTest)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnViewReports)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(464, Short.MAX_VALUE))
         );
 
-        doctorContainer.setBackground(new java.awt.Color(240, 240, 240));
+        splitPaneDoctor.setLeftComponent(DoctorContainerLeftPanel);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        jLabel1.setText("Doctor WorkArea");
+        DoctorContainerRightJPanel.setLayout(new java.awt.CardLayout());
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel3.setText("Schedule:");
+        doctorContainer.setBackground(new java.awt.Color(0, 153, 204));
+        doctorContainer.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                doctorContainerComponentShown(evt);
+            }
+        });
 
         tblDoctorSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -241,9 +254,6 @@ public class DoctorContainer extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblDoctorSchedule);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel2.setText("Test Request:");
-
         tblLabRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -261,9 +271,12 @@ public class DoctorContainer extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(tblLabRequests);
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel5.setText("Medicine Request:");
+        if (tblLabRequests.getColumnModel().getColumnCount() > 0) {
+            tblLabRequests.getColumnModel().getColumn(0).setResizable(false);
+            tblLabRequests.getColumnModel().getColumn(1).setResizable(false);
+            tblLabRequests.getColumnModel().getColumn(2).setResizable(false);
+            tblLabRequests.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         tblMedicineRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -283,81 +296,86 @@ public class DoctorContainer extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblMedicineRequests);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        jLabel1.setText("Doctor WorkArea");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel2.setText("Test Request:");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel3.setText("Schedule:");
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel5.setText("Medicine Request:");
+
         javax.swing.GroupLayout doctorContainerLayout = new javax.swing.GroupLayout(doctorContainer);
         doctorContainer.setLayout(doctorContainerLayout);
         doctorContainerLayout.setHorizontalGroup(
             doctorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(doctorContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(doctorContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(doctorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(doctorContainerLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(doctorContainerLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(doctorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(doctorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         doctorContainerLayout.setVerticalGroup(
             doctorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(doctorContainerLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        DoctorContainerRightJPanel.add(doctorContainer, "card2");
+
+        splitPaneDoctor.setRightComponent(DoctorContainerRightJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DoctorContainerLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(doctorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(splitPaneDoctor, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(doctorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(DoctorContainerLeftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(splitPaneDoctor)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateScheduleActionPerformed
-        DoctorCreateSchedule doctorCreateSchedule =new DoctorCreateSchedule(DoctorContainerLeftPanel, userAccount, scheduleDirectory);
-        DoctorContainerLeftPanel.add("DoctorCreateSchedule", doctorCreateSchedule);
-        CardLayout layout=(CardLayout) DoctorContainerLeftPanel.getLayout();
-        layout.next(DoctorContainerLeftPanel);
+        DoctorCreateSchedule doctorCreateSchedule =new DoctorCreateSchedule(DoctorContainerRightJPanel, userAccount, scheduleDirectory);
+        DoctorContainerRightJPanel.add("DoctorCreateSchedule", doctorCreateSchedule);
+        CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
+        layout.next(DoctorContainerRightJPanel);
         btnCreateSchedule.setEnabled(false);
         btnModifySchedule.setEnabled(false);
         btnRequestMedicine.setEnabled(false);
         btnRequestLabTest.setEnabled(false);
         btnCancel.setEnabled(false);
         btnViewReports.setEnabled(false);
-
+        
     }//GEN-LAST:event_btnCreateScheduleActionPerformed
 
     private void btnModifyScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyScheduleActionPerformed
@@ -369,10 +387,10 @@ public class DoctorContainer extends javax.swing.JPanel {
         else
         {
             Schedule schedule = (Schedule) tblDoctorSchedule.getValueAt(selectedRow, 3);
-            DoctorModifySchedule doctorModifySchedule = new DoctorModifySchedule (container, userAccount, schedule);
-            DoctorContainerLeftPanel.add("modifyDoctorSchedule", doctorModifySchedule);
-            CardLayout layout = (CardLayout) DoctorContainerLeftPanel.getLayout();
-            layout.next(DoctorContainerLeftPanel);
+            DoctorModifySchedule doctorModifySchedule = new DoctorModifySchedule(DoctorContainerRightJPanel, userAccount, schedule);
+            DoctorContainerRightJPanel.add("modifyDoctorSchedule", doctorModifySchedule);
+            CardLayout layout = (CardLayout) DoctorContainerRightJPanel.getLayout();
+            layout.next(DoctorContainerRightJPanel);
             btnCreateSchedule.setEnabled(false);
             btnRequestLabTest.setEnabled(false);
             btnRequestMedicine.setEnabled(false);
@@ -380,7 +398,50 @@ public class DoctorContainer extends javax.swing.JPanel {
             btnModifySchedule.setEnabled(false);
             btnViewReports.setEnabled(false);
         }
+
     }//GEN-LAST:event_btnModifyScheduleActionPerformed
+
+    private void doctorContainerComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_doctorContainerComponentShown
+        // TODO add your handling code here:
+        btnCreateSchedule.setEnabled(true);
+        btnModifySchedule.setEnabled(true);
+        btnRequestMedicine.setEnabled(true);
+        btnRequestLabTest.setEnabled(true);
+        btnCancel.setEnabled(true);
+        btnViewReports.setEnabled(true);
+        populateScheduleTable();
+        populateLabRequestTable();
+        populateMedicineRequestTable();
+    }//GEN-LAST:event_doctorContainerComponentShown
+
+    private void btnRequestMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestMedicineActionPerformed
+        // TODO add your handling code here:
+        DoctorMedicineRequest doctorMedicineRequest =new DoctorMedicineRequest(DoctorContainerRightJPanel, userAccount, enterprise);
+        DoctorContainerRightJPanel.add("Lab Test Request", doctorMedicineRequest);
+        CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
+        layout.next(DoctorContainerRightJPanel);
+        btnCreateSchedule.setEnabled(false);
+        btnModifySchedule.setEnabled(false);
+        btnRequestMedicine.setEnabled(false);
+        btnRequestLabTest.setEnabled(false);
+        btnCancel.setEnabled(false);
+        btnViewReports.setEnabled(false);
+        
+    }//GEN-LAST:event_btnRequestMedicineActionPerformed
+
+    private void btnRequestLabTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestLabTestActionPerformed
+        // TODO add your handling code here:
+        DoctorLabTestRequest docterLabTestRequest =new DoctorLabTestRequest(DoctorContainerRightJPanel, userAccount, enterprise);
+        DoctorContainerRightJPanel.add("Lab Test Request", docterLabTestRequest);
+        CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
+        layout.next(DoctorContainerRightJPanel);
+        btnCreateSchedule.setEnabled(false);
+        btnModifySchedule.setEnabled(false);
+        btnRequestMedicine.setEnabled(false);
+        btnRequestLabTest.setEnabled(false);
+        btnCancel.setEnabled(false);
+        btnViewReports.setEnabled(false);
+    }//GEN-LAST:event_btnRequestLabTestActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
@@ -396,26 +457,6 @@ public class DoctorContainer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnRequestLabTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestLabTestActionPerformed
-        // TODO add your handling code here:
-        RequestLabTestJPanel docterLabTestRequest =new RequestLabTestJPanel(DoctorContainerLeftPanel, userAccount, enterprise);
-        DoctorContainerLeftPanel.add("Lab Test Request", docterLabTestRequest);
-        CardLayout layout=(CardLayout) DoctorContainerLeftPanel.getLayout();
-        layout.next(DoctorContainerLeftPanel);
-        btnCreateSchedule.setEnabled(false);
-        btnModifySchedule.setEnabled(false);
-        btnRequestMedicine.setEnabled(false);
-        btnRequestLabTest.setEnabled(false);
-        btnCancel.setEnabled(false);
-        btnViewReports.setEnabled(false);
-    }//GEN-LAST:event_btnRequestLabTestActionPerformed
-
-    private void btnRequestMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestMedicineActionPerformed
-        // TODO add your handling code here:
-       
-
-    }//GEN-LAST:event_btnRequestMedicineActionPerformed
-
     private void btnViewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReportsActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblLabRequests.getSelectedRow();
@@ -425,23 +466,24 @@ public class DoctorContainer extends javax.swing.JPanel {
         else
         {
             LabTestWorkRequest request = (LabTestWorkRequest) tblLabRequests.getValueAt(selectedRow, 1);
-            DoctorViewReports doctorViewReports =new DoctorViewReports(DoctorContainerLeftPanel, userAccount, request);
-            DoctorContainerLeftPanel.add("doctorViewReports", doctorViewReports);
-            CardLayout layout=(CardLayout) DoctorContainerLeftPanel.getLayout();
-            layout.next(DoctorContainerLeftPanel);
+            DoctorViewReoprts doctorViewReports =new DoctorViewReoprts(DoctorContainerRightJPanel, userAccount, request);
+            DoctorContainerRightJPanel.add("doctorViewReports", doctorViewReports);
+            CardLayout layout=(CardLayout) DoctorContainerRightJPanel.getLayout();
+            layout.next(DoctorContainerRightJPanel);
             btnCreateSchedule.setEnabled(false);
             btnModifySchedule.setEnabled(false);
             btnRequestMedicine.setEnabled(false);
             btnRequestLabTest.setEnabled(false);
             btnCancel.setEnabled(false);
             btnViewReports.setEnabled(false);
-
+            
         }
     }//GEN-LAST:event_btnViewReportsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DoctorContainerLeftPanel;
+    private javax.swing.JPanel DoctorContainerRightJPanel;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreateSchedule;
     private javax.swing.JButton btnModifySchedule;
@@ -452,10 +494,12 @@ public class DoctorContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSplitPane splitPaneDoctor;
     private javax.swing.JTable tblDoctorSchedule;
     private javax.swing.JTable tblLabRequests;
     private javax.swing.JTable tblMedicineRequests;

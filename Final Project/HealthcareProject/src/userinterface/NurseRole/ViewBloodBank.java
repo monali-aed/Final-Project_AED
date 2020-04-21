@@ -3,23 +3,58 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NurseRole;
+package userInterface.NurseRole;
 
+import business.Enterprise.BloodBankEnterprise;
+import business.Enterprise.Enterprise;
+import business.Inventory.Blood;
+import business.Network.Network;
+import business.Organization.BloodBankOrganization;
+import business.Organization.NurseOrganization;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import business.WorkQueue.BloodRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author monal
+ * @author maalp
  */
 public class ViewBloodBank extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewBloodBank
      */
-    JPanel container;
-    public ViewBloodBank() {
+    
+    NurseOrganization nurseOrganization;
+    JPanel rightPanel;
+    Network network;
+    UserAccount userAccount;
+    ViewBloodBank(JPanel rightPanel, Organization organization, Network network, UserAccount userAccount) {
         initComponents();
+        this.rightPanel = rightPanel;
+        this.nurseOrganization = (NurseOrganization)organization;
+        this.network = network;
+        this.userAccount = userAccount;
+        populateTable();
+    }
+    
+    private void populateTable()
+    {
+        DefaultTableModel model = (DefaultTableModel)tblBlood.getModel();
+        
+        model.setRowCount(0);
+        
+        for(Blood blood : nurseOrganization.getBloodDirectory().getBloodDirectory()){
+            Object[] row = new Object[4];
+            row[0] = blood;
+            row[1] = blood.getQuantity();
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -36,6 +71,8 @@ public class ViewBloodBank extends javax.swing.JPanel {
         tblBlood = new javax.swing.JTable();
         btnRequestBlood = new javax.swing.JButton();
         btnBank = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
         jLabel1.setText("Blood Storage");
@@ -59,6 +96,10 @@ public class ViewBloodBank extends javax.swing.JPanel {
         });
         tblBlood.setRowHeight(30);
         jScrollPane1.setViewportView(tblBlood);
+        if (tblBlood.getColumnModel().getColumnCount() > 0) {
+            tblBlood.getColumnModel().getColumn(0).setResizable(false);
+            tblBlood.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         btnRequestBlood.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnRequestBlood.setText("Request Blood");
@@ -83,7 +124,7 @@ public class ViewBloodBank extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -101,25 +142,68 @@ public class ViewBloodBank extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRequestBlood)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(btnBank)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRequestBloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestBloodActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_btnRequestBloodActionPerformed
-
     private void btnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBankActionPerformed
         // TODO add your handling code here:
-         container.remove(this);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.previous(container);
-        
+        rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.previous(rightPanel);
     }//GEN-LAST:event_btnBankActionPerformed
+
+    private void btnRequestBloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestBloodActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblBlood.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null,"Please Select a Row from table first","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            Blood blood  =  (Blood) tblBlood.getValueAt(selectedRow,0);
+            BloodRequest request = new BloodRequest();
+            request.setMessage(blood.getType());
+            request.setPatientName(nurseOrganization.getName());
+            request.setStatus("Sent");
+            request.setRequestType("Blood Request");
+            
+            Enterprise ent = null;
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList())
+        {
+            if(enterprise instanceof BloodBankEnterprise)
+            {
+                //JOptionPane.showMessageDialog(null, "check");
+                ent = enterprise;
+                Organization org = null;
+                for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof BloodBankOrganization){
+                org = organization;
+                if (org!=null)
+                {
+                JOptionPane.showMessageDialog(null, "check");
+                org.getWorkQueue().getWorkRequestList().add(request);
+                break;
+            }
+            
+            }
+            
+            //userAccount.getWorkQueue().getWorkRequestList().add(request);
+            //nurseOrganization.getWorkQueue().getWorkRequestList().add(request);
+        }
+            
+        }
+        }
+        
+        
+        nurseOrganization.getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Blood Request Successful");
+        rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.previous(rightPanel);
+        }
+    }//GEN-LAST:event_btnRequestBloodActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

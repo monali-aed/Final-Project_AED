@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.AdministrativeRole;
+package UserInterface.AdministrativeRole;
 
-import Business.Enterprise.Enterprise;
-import Business.Organization.Organization;
-import Business.Organization.Organization.Type;
-import Business.Organization.OrganizationDirectory;
+import business.Enterprise.Enterprise;
+import business.Organization.Organization;
+import business.Organization.Organization.Type;
+import business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,32 +15,29 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author sylvester
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private OrganizationDirectory directory;
-    private JPanel userProcessContainer;
+    private JPanel container;
     private Enterprise enterprise;
-    
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory,Enterprise enterprise ) {
+    public ManageOrganizationJPanel(JPanel container,OrganizationDirectory directory, Enterprise enterprise) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.container = container;
         this.directory = directory;
-        this.enterprise = enterprise;
+        this.enterprise=enterprise;
         
-        populateTable();
-        populateCombo();
+        populateOrganizationTable();
+        populateComboBox();
     }
     
-    private void populateCombo(){
-    boxOrganization.removeAllItems();
-//        for (Type type : Organization.Type.values()){
-//            if (!type.getValue().equals(Type.Admin.getValue()))
-//            {   
+    private void populateComboBox(){
+        boxOrganization.removeAllItems();
+   
                 if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.HOSPITAL))
                 {
                 boxOrganization.addItem(Organization.Type.Doctor);
@@ -52,16 +49,18 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 {
                      boxOrganization.addItem(Organization.Type.BloodSupplier);
                 }
-              
+                else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.EQUIPMENT_SUPPLIERS))
+                {
+                    boxOrganization.addItem(Organization.Type.EquipmentSupplier);
+                }
                 else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.SUPPLIER))
                 {
                   boxOrganization.addItem(Organization.Type.Supplier);    
                 }
-//            }
-//        }
+
     }
 
-    private void populateTable(){
+    private void populateOrganizationTable(){
         DefaultTableModel model = (DefaultTableModel) tblOrganization.getModel();
         
         model.setRowCount(0);
@@ -83,7 +82,6 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrganization = new javax.swing.JTable();
         btnAddOrganization = new javax.swing.JButton();
@@ -91,6 +89,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         lblOrganizationType = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         lblBanner = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 153, 204));
 
         tblOrganization.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         tblOrganization.setModel(new javax.swing.table.DefaultTableModel(
@@ -118,6 +118,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
         tblOrganization.setRowHeight(30);
         jScrollPane1.setViewportView(tblOrganization);
+        if (tblOrganization.getColumnModel().getColumnCount() > 0) {
+            tblOrganization.getColumnModel().getColumn(0).setResizable(false);
+            tblOrganization.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         btnAddOrganization.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         btnAddOrganization.setText("Add Organization");
@@ -144,38 +148,38 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         lblBanner.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
         lblBanner.setText("Manage Organization");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 123, Short.MAX_VALUE)
                 .addComponent(lblOrganizationType)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddOrganization)
                     .addComponent(boxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(135, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backJButton)
                             .addComponent(lblBanner))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBanner)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOrganizationType)
                     .addComponent(boxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -183,17 +187,6 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,24 +201,23 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 return;
             }
             else
-            continue;
+                continue;
         }
-        directory.createOrganization(type);
-        populateTable();
+            directory.createOrganization(type);
+        populateOrganizationTable();
     }//GEN-LAST:event_btnAddOrganizationActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JComboBox boxOrganization;
     private javax.swing.JButton btnAddOrganization;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblOrganizationType;

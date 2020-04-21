@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Inventory;
+package business.Inventory;
 
 /**
  *
  * @author monal
  */
 public class Medicine {
-    private String medicineName;
+    
+    String medicineName;
     int quantity;
 
     public String getMedicineName() {
@@ -28,17 +29,18 @@ public class Medicine {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public Medicine(String medicineName, int quantity) {
-        this.medicineName = medicineName;
-        this.quantity = quantity;
-    }
+    
     public Medicine()
     {
     }
-
+    
+    public Medicine(String name, int quantity){
+         this.medicineName = name;
+         this.quantity = quantity;
+     }
     @Override
-    public String toString() {
+    public String toString()
+    {
         return medicineName;
     }
     

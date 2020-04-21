@@ -1,18 +1,18 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Enterprise;
+package business.Enterprise;
 
-import Business.Organization.Organization;
-import Business.Organization.OrganizationDirectory;
+import business.Organization.Organization;
+import business.Organization.OrganizationDirectory;
 
 /**
  *
  * @author monal
  */
-public abstract class Enterprise extends Organization{
+public abstract class Enterprise extends Organization {
     
     public Enterprise(String name, EnterpriseType enterpriseType)
     {

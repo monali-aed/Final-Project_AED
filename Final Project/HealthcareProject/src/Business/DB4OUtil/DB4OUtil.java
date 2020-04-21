@@ -1,22 +1,20 @@
-package Business.DB4OUtil;
+package business.DB4OUtil;
 
-import Business.ConfigureASystem;
-import Business.EcoSystem;
+import business.ConfigureSystem;
+import business.EcoSystem;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.ta.TransparentPersistenceSupport;
-import java.nio.file.Paths;
 
 /**
  *
  * @author monal
- * 
  */
 public class DB4OUtil {
 
-    private static final String FILENAME = "C:\\Users\\monal\\OneDrive\\Documents\\AED PROJECT\\Final Project\\HealthcareProject\\Databank.db4o";
+    private static final String FILENAME = "C:\\Users\\monal\\OneDrive\\Desktop\\Final-AED\\Final Project\\HealthcareProject\\Databank.db4o"; // path to the data store
     private static DB4OUtil dB4OUtil;
     
     public synchronized static DB4OUtil getInstance(){
@@ -65,7 +63,7 @@ public class DB4OUtil {
         ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
         EcoSystem system;
         if (systems.size() == 0){
-            system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
+            system = ConfigureSystem.configure();  // If there's no System in the record, create a new one
         }
         else{
             system = systems.get(systems.size() - 1);

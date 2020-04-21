@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Employee;
+package business.Employee;
 
 import java.util.ArrayList;
 
@@ -22,13 +22,11 @@ public class EmployeeDirectory {
         return employeeList;
     }
     
-    public Employee createEmployee(String name,int i){
+    public Employee createEmployee(String name, int ID){
         Employee employee = new Employee();
         employee.setName(name);
-        employee.setId(i);
+        employee.setId(ID);
         employeeList.add(employee);
         return employee;
     }
-
-   
 }

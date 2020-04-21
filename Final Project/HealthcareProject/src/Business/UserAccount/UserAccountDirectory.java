@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.UserAccount;
+package business.UserAccount;
 
-import Business.Employee.Employee;
-import Business.Role.Role;
+import business.Employee.Employee;
+import business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author monal
  */
 public class UserAccountDirectory {
     
