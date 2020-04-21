@@ -5,6 +5,9 @@
  */
 package userinterface.NurseRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author monal
@@ -14,6 +17,7 @@ public class RecordVitalSigns extends javax.swing.JPanel {
     /**
      * Creates new form RecordVitalSigns
      */
+    JPanel container;
     public RecordVitalSigns() {
         initComponents();
     }
@@ -230,7 +234,9 @@ public class RecordVitalSigns extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        
+         container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtCommentsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCommentsFocusLost

@@ -5,6 +5,9 @@
  */
 package userinterface.NurseRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author monal
@@ -14,6 +17,7 @@ public class RegisterPatient extends javax.swing.JPanel {
     /**
      * Creates new form RegisterPatient
      */
+    JPanel container;
     public RegisterPatient() {
         initComponents();
     }
@@ -220,7 +224,9 @@ public class RegisterPatient extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-       
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed

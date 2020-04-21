@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Enterprise.Enterprise.EnterpriseType;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -12,14 +13,13 @@ import java.util.ArrayList;
  *
  * @author monal
  */
-public class HospitalEnterprise extends Enterprise {
-    
-    public HospitalEnterprise(String name){
-        super(name,EnterpriseType.HOSPITAL);
+public class EquipmentSupplierEnterprise extends Enterprise{
+   
+        public EquipmentSupplierEnterprise(String name)
+    {
+        super(name, EnterpriseType.EQUIPMENT_SUPPLIERS);
     }
-    @Override
-    public ArrayList<Role> getSupportedRole() {
+        public ArrayList<Role> getSupportedRole() {
         return null;
     }
-    
 }
