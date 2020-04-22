@@ -144,7 +144,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
 
         btnAddUser.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnAddUser.setText("Add User");
+        btnAddUser.setText("Create User");
         btnAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddUserActionPerformed(evt);

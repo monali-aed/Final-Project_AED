@@ -100,7 +100,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         lblName.setText("Name:");
 
         btnSave.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnSave.setText("Save Enterprise");
+        btnSave.setText("Add Enterprise");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
